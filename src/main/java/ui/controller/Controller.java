@@ -24,10 +24,9 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String command = "home", destination = null;
+        String command = request.getParameter("command"), destination = "index.jsp";
 
         if (command != null) {
-            command = request.getParameter("command");
             try {
                 RequestHandler handler = handlerFactory.getHandler(command, contactTracingService);
                 destination = handler.handleRequest(request, response);
