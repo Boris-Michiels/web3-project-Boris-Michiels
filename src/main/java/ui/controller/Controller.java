@@ -1,6 +1,5 @@
 package ui.controller;
 
-import domain.db.PersonService;
 import domain.model.ContactTracingService;
 
 import javax.servlet.ServletException;
