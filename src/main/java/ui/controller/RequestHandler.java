@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class RequestHandler {
     protected ContactTracingService contactTracingService;
 
-    public abstract String handleRequest (HttpServletRequest request, HttpServletResponse response);
+    public abstract String handleRequest(HttpServletRequest request, HttpServletResponse response);
 
-    public void setModel (ContactTracingService contactTracingServiceService) {
+    public void setModel(ContactTracingService contactTracingServiceService) {
         this.contactTracingService = contactTracingServiceService;
     }
 
