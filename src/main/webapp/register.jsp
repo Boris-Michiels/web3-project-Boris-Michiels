@@ -12,6 +12,7 @@
 <div id="container">
     <header>
         <h1><span>XXX</span></h1>
+
         <nav>
             <ul>
                 <li><a href="Controller">Home</a></li>
@@ -19,9 +20,10 @@
                 <li id="actual"><a href="Controller?command=Register">Register</a></li>
             </ul>
         </nav>
-        <h2>Register</h2>
 
+        <h2>Register</h2>
     </header>
+
     <main>
         <c:if test="${not empty errors}">
             <div class="alert-danger">
@@ -34,7 +36,6 @@
         </c:if>
 
         <form method="post" action="Controller?command=Add" novalidate>
-            <!-- novalidate in order to be able to run tests correctly -->
             <p>
                 <label for="userid">User id</label>
                 <input class="form-group ${useridClass}" type="text" id="userid" name="userid" value="${useridPreviousValue}" required>
@@ -60,6 +61,7 @@
             </p>
         </form>
     </main>
+
     <footer>
         &copy; Webontwikkeling 3, UC Leuven-Limburg
     </footer>
