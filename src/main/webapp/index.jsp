@@ -24,12 +24,15 @@
         <h2>Home</h2>
     </header>
 
-    <main> Sed ut perspiciatis unde omnis iste natus error sit
-        voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-        ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-        qui ratione voluptatem sequi nesciunt.
+    <main>
+        <p>
+            Sed ut perspiciatis unde omnis iste natus error sit
+            voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
+            ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+            qui ratione voluptatem sequi nesciunt.
+        </p>
 
         <br>
 
@@ -44,11 +47,11 @@
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="userid">User id (e-mail)</label>
-                        <input class="form-group ${useridClass}" type="text" id="userid" name="userid" value="${useridPreviousValue}" required>
+                        <input class="form-group ${useridClass}" type="text" id="userid" name="userid" required>
                     </p>
                     <p>
                         <label for="password">Password</label>
-                        <input class="form-group ${passwordClass}" type="password" id="password" name="password" value="${passwordPreviousValue}" required>
+                        <input class="form-group ${passwordClass}" type="password" id="password" name="password" required>
                     </p>
                     <p>
                         <input type="submit" id="logIn" value="Log In">

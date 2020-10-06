@@ -1,6 +1,5 @@
 package ui.controller;
 
-import domain.model.DomainException;
 import domain.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +10,16 @@ public class LogIn extends RequestHandler {
 
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Person person = contactTracingService.getPerson(request.getParameter("userid"));
-        if (person != null) {
-            try {
-                if (person.isCorrectPassword(request.getParameter("password"))) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("person", person);
-                }
-            } catch (DomainException ignored) {
-            }
+        boolean correct = false;
+        String password = request.getParameter("password");
+
+        if (person != null && !password.isEmpty()) {
+            correct = person.isCorrectPassword(request.getParameter("password"));
         }
-        request.setAttribute("loginfail", "No valid userid/password");
+        if (person != null && correct) {
+            HttpSession session = request.getSession();
+            session.setAttribute("person", person);
+        } else request.setAttribute("loginfail", "No valid userid/password");
         return "index.jsp";
     }
 }
