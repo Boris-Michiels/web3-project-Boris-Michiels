@@ -44,6 +44,12 @@
                     </div>
                 </c:if>
 
+                <c:if test="${not empty removed}">
+                    <div class="alert-danger">
+                        <p>${removed}</p>
+                    </div>
+                </c:if>
+
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="userid">User id (e-mail)</label>
@@ -82,6 +88,12 @@
                     </p>
                     <p>
                         <input type="submit" id="changePassword" value="Change Password">
+                    </p>
+                </form>
+
+                <form method="post" action="Controller?command=RemoveConfirmation" novalidate>
+                    <p>
+                        <input type="submit" id="removeConfirmation" value="Remove account">
                     </p>
                 </form>
             </c:otherwise>

@@ -1,24 +1,22 @@
 package ui.controller;
 
-import domain.model.DomainException;
 import domain.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class ChangePassword extends RequestHandler {
+public class Remove extends RequestHandler {
 
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        String newPassword = request.getParameter("newPassword");
-
-        try {
+        String confirmation = request.getParameter("confirmation");
+        if (!confirmation.isEmpty() && confirmation.equals("Remove")) {
             HttpSession session = request.getSession();
             Person person = (Person) session.getAttribute("person");
-            person.setPassword(newPassword);
-            request.setAttribute("newPMessage", "Your password has been updated");
-        } catch (DomainException e) {
-            request.setAttribute("newPMessage", e.getMessage());
+            String userid = person.getUserid();
+            contactTracingService.deletePerson(userid);
+            session.invalidate();
+            request.setAttribute("removed", "Your account has been removed!");
         }
         return "index.jsp";
     }
