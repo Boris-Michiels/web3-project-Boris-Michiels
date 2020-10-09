@@ -13,14 +13,9 @@
     <header>
         <h1><span>XXX</span></h1>
 
-        <nav>
-            <ul>
-                <li id="actual"><a href="Controller">Home</a></li>
-                <li><a href="Controller?command=Overview">Overview</a></li>
-                <li><a href="Controller?command=Register">Register</a></li>
-                <li><a href="profile.jsp">Profile</a></li>
-            </ul>
-        </nav>
+        <jsp:include page="nav.jsp">
+            <jsp:param name="page" value="profile"/>
+        </jsp:include>
 
         <h2>Profile</h2>
     </header>
@@ -81,7 +76,7 @@
                     </p>
                 </form>
 
-                <form method="post" action="Controller?command=RemoveConfirmation" novalidate>
+                <form method="post" action="removeConfirmation.jsp" novalidate>
                     <p>
                         <input type="submit" id="removeConfirmation" value="Remove account">
                     </p>

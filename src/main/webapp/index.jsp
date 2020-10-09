@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-//Alles via controller? (index, register, profile...)
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,14 +13,9 @@
     <header>
         <h1><span>XXX</span></h1>
 
-        <nav>
-            <ul>
-                <li id="actual"><a href="Controller">Home</a></li>
-                <li><a href="Controller?command=Overview">Overview</a></li>
-                <li><a href="Controller?command=Register">Register</a></li>
-                <li><a href="profile.jsp">Profile</a></li>
-            </ul>
-        </nav>
+        <jsp:include page="nav.jsp">
+            <jsp:param name="page" value="home"/>
+        </jsp:include>
 
         <h2>Home</h2>
     </header>
