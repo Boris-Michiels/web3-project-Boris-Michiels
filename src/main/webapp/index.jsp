@@ -38,20 +38,20 @@
 
         <c:choose>
             <c:when test="${empty person}">
-                <c:if test="${not empty loginfail}">
+                <c:if test="${not empty loginFail}">
                     <div class="alert-danger">
-                        <p>${loginfail}</p>
+                        <p>${loginFail}</p>
                     </div>
                 </c:if>
 
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="userid">User id (e-mail)</label>
-                        <input class="form-group ${useridClass}" type="text" id="userid" name="userid" required>
+                        <input type="text" id="userid" name="userid" required>
                     </p>
                     <p>
                         <label for="password">Password</label>
-                        <input class="form-group ${passwordClass}" type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" required>
                     </p>
                     <p>
                         <input type="submit" id="logIn" value="Log In">
@@ -60,10 +60,28 @@
             </c:when>
             <c:otherwise>
                 <p id="loggedin">Welcome ${person.firstName}!</p>
+                <br>
+                <p>Manage your account!</p>
 
                 <form method="post" action="Controller?command=LogOut" novalidate>
                     <p>
                         <input type="submit" id="logOut" value="Log Out">
+                    </p>
+                </form>
+
+                <c:if test="${not empty newPMessage}">
+                    <div class="alert-danger">
+                        <p>${newPMessage}</p>
+                    </div>
+                </c:if>
+
+                <form method="post" action="Controller?command=ChangePassword" novalidate>
+                    <p>
+                        <label for="newPassword">New Password</label>
+                        <input type="text" id="newPassword" name="newPassword" required>
+                    </p>
+                    <p>
+                        <input type="submit" id="changePassword" value="Change Password">
                     </p>
                 </form>
             </c:otherwise>
