@@ -20,6 +20,6 @@ public class ChangePassword extends RequestHandler {
         } catch (DomainException e) {
             request.setAttribute("newPMessage", e.getMessage());
         }
-        return "index.jsp";
+        return "profile.jsp";
     }
 }

@@ -18,6 +18,6 @@ public class Remove extends RequestHandler {
             session.invalidate();
             request.setAttribute("removed", "Your account has been removed!");
         }
-        return "index.jsp";
+        return "profile.jsp";
     }
 }

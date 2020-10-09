@@ -20,6 +20,6 @@ public class LogIn extends RequestHandler {
             HttpSession session = request.getSession();
             session.setAttribute("person", person);
         } else request.setAttribute("loginFail", "No valid userid/password");
-        return "index.jsp";
+        return "profile.jsp";
     }
 }

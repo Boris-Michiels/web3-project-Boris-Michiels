@@ -1,3 +1,9 @@
 .idea/
 out/
 target/
+log/
+*.iml
+*.iws
+
+# password
+/src/main/java/ui/view/Secret.java
