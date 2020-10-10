@@ -31,8 +31,6 @@ public class Controller extends HttpServlet {
                 destination = handler.handleRequest(request, response);
             } catch (Exception exc) {
                 System.out.println(exc.getMessage());
-                //request.setAttribute("error", exc.getMessage());
-                //destination = "error.jsp";
             }
         }
         request.getRequestDispatcher(destination).forward(request, response);
