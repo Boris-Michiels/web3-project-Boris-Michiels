@@ -13,13 +13,9 @@
     <header>
         <h1><span>XXX</span></h1>
 
-        <nav>
-            <ul>
-                <li><a href="Controller">Home</a></li>
-                <li><a href="Controller?command=Overview">Overview</a></li>
-                <li id="actual"><a href="Controller?command=Register">Register</a></li>
-            </ul>
-        </nav>
+        <jsp:include page="nav.jsp">
+            <jsp:param name="page" value="profile"/>
+        </jsp:include>
 
         <h2>Remove account?</h2>
     </header>
