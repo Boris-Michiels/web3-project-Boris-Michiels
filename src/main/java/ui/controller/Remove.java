@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class Remove extends RequestHandler {
 
+    @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String confirmation = request.getParameter("confirmation");
         if (!confirmation.isEmpty() && confirmation.equals("Remove")) {

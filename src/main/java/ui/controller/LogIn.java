@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class LogIn extends RequestHandler {
 
+    @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Person person = contactTracingService.getPerson(request.getParameter("userid"));
         boolean correct = false;

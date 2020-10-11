@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class Add extends RequestHandler {
 
+    @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         ArrayList<String> errors = new ArrayList<>();
         Person person = new Person();
