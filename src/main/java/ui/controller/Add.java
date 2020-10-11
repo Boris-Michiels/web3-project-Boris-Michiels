@@ -24,7 +24,7 @@ public class Add extends RequestHandler {
         String destination = "register.jsp";
         if (errors.size() == 0) {
             try {
-                contactTracingService.addPerson(person);
+                getService().addPerson(person);
                 destination = "index.jsp";
             } catch (DbException d) {
                 errors.add(d.getMessage());

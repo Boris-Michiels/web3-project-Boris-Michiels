@@ -15,7 +15,7 @@ public class Remove extends RequestHandler {
             HttpSession session = request.getSession();
             Person person = (Person) session.getAttribute("person");
             String userid = person.getUserid();
-            contactTracingService.deletePerson(userid);
+            getService().deletePerson(userid);
             session.invalidate();
             request.setAttribute("removed", "Your account has been removed!");
         }
