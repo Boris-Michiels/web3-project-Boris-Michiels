@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RegisterTest {
 	private WebDriver driver;
-	private String path = "http://localhost:8080/Controller";
+	private String path = "http://localhost:8080/";
 	
 	@Before
 	public void setUp() {
@@ -22,7 +22,7 @@ public class RegisterTest {
 			// hint: zoek een werkende test op van web 2 ...
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\boris\\Documents\\Programs\\Selenium\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get(path+"?command=Register");
+		driver.get(path+"register.jsp");
 	}
 	
 	@After
@@ -38,7 +38,7 @@ public class RegisterTest {
 		String title = driver.getTitle();
 		assertEquals("Home",title);
 		
-		driver.get(path+"?command=Overview");
+		driver.get(path+"Controller?command=Overview");
 		
 		ArrayList<WebElement> listItems=(ArrayList<WebElement>) driver.findElements(By.cssSelector("table tr"));
 		boolean found=false;
@@ -170,7 +170,7 @@ public class RegisterTest {
 		String useridRandom = generateRandomUseridInOrderToRunTestMoreThanOnce("pierke");
 		submitForm(useridRandom, "Pieter", "Pieters", "pieter.pieters@hotmail.com", "1234");
 		
-		driver.get(path+"?command=Register");
+		driver.get(path+"register.jsp");
 
 		submitForm(useridRandom, "Pieter", "Pieters", "pieter.pieters@hotmail.com", "1234");
 		
