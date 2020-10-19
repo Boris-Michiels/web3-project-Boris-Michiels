@@ -6,4 +6,4 @@ log/
 *.iws
 
 # password
-/src/main/java/ui/view/Secret.java
+/src/main/java/util/Secret.java
