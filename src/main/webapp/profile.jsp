@@ -23,22 +23,16 @@
     <main>
         <c:choose>
             <c:when test="${empty person}">
-                <c:if test="${not empty loginFail}">
+                <c:if test="${not empty message}">
                     <div class="alert-danger">
-                        <p>${loginFail}</p>
-                    </div>
-                </c:if>
-
-                <c:if test="${not empty removed}">
-                    <div class="alert-danger">
-                        <p>${removed}</p>
+                        <p>${message}</p>
                     </div>
                 </c:if>
 
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="userid">User id (e-mail)</label>
-                        <input type="text" id="userid" name="userid" required>
+                        <input type="text" id="userid" name="userid" value="${useridPreviousValue}" required>
                     </p>
                     <p>
                         <label for="password">Password</label>

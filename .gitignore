@@ -4,6 +4,7 @@ target/
 log/
 *.iml
 *.iws
+notes.txt
 
 # password
 /src/main/java/util/Secret.java

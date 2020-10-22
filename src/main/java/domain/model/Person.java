@@ -49,7 +49,7 @@ public class Person {
         return email;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 

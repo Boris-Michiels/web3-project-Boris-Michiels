@@ -25,7 +25,7 @@ public class Add extends RequestHandler {
         if (errors.size() == 0) {
             try {
                 getService().addPerson(person);
-                destination = "index.jsp";
+                destination = "Controller?command=Overview";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }

@@ -17,7 +17,7 @@ public class Remove extends RequestHandler {
             String userid = person.getUserid();
             getService().deletePerson(userid);
             session.invalidate();
-            request.setAttribute("removed", "Your account has been removed!");
+            request.setAttribute("message", "Your account has been removed!");
         }
         return "profile.jsp";
     }

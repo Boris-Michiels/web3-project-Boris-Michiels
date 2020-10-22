@@ -1,36 +1,36 @@
 package domain.model;
 
-import domain.db.PersonService;
+import domain.db.PersonDBSQL;
 
 import java.util.List;
 
 public class ContactTracingService {
-    private PersonService personService = new PersonService();
+    private PersonDBSQL personDBSQL = new PersonDBSQL();
 
     public ContactTracingService() {
     }
 
     public Person getPerson(String personId) {
-        return getPersonService().get(personId);
+        return getPersonDBSQL().get(personId);
     }
 
     public List<Person> getPersons() {
-        return getPersonService().getAll();
+        return getPersonDBSQL().getAll();
     }
 
     public void addPerson(Person person) {
-        getPersonService().add(person);
+        getPersonDBSQL().add(person);
     }
 
-    public void updatePersons(Person person) {
-        getPersonService().update(person);
+    public void updatePerson(Person person) {
+        getPersonDBSQL().update(person);
     }
 
     public void deletePerson(String id) {
-        getPersonService().delete(id);
+        getPersonDBSQL().delete(id);
     }
 
-    private PersonService getPersonService() {
-        return personService;
+    private PersonDBSQL getPersonDBSQL() {
+        return personDBSQL;
     }
 }

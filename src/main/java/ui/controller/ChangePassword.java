@@ -17,6 +17,7 @@ public class ChangePassword extends RequestHandler {
             HttpSession session = request.getSession();
             Person person = (Person) session.getAttribute("person");
             person.setPassword(newPassword);
+            getService().updatePerson(person);
             request.setAttribute("newPMessage", "Your password has been updated");
         } catch (DomainException e) {
             request.setAttribute("newPMessage", e.getMessage());
