@@ -1,5 +1,9 @@
 package domain.model;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,10 +14,10 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    public Person(String userid, String email, String password, String firstName, String lastName) {
+    public Person(String userid, String email, String hashedPassword, String firstName, String lastName) {
         setUserid(userid);
         setEmail(email);
-        setPassword(password);
+        setHashedPassword(hashedPassword);
         setFirstName(firstName);
         setLastName(lastName);
     }
@@ -57,14 +61,30 @@ public class Person {
         if (password == null || password.isEmpty()) {
             throw new DomainException("No password given");
         }
-        return getPassword().equals(password);
+        try {
+            return getPassword().equals(hashPassword(password));
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        if (hashedPassword == null || hashedPassword.isEmpty()) {
+            throw new DomainException("No password given");
+        }
+        this.password = hashedPassword;
     }
 
     public void setPassword(String password) {
         if (password == null || password.isEmpty()) {
             throw new DomainException("No password given");
         }
-        this.password = password;
+        try {
+            this.password = hashPassword(password);
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getFirstName() {
@@ -92,5 +112,15 @@ public class Person {
     @Override
     public String toString() {
         return getFirstName() + " " + getLastName() + ": " + getUserid() + ", " + getEmail();
+    }
+
+    private String hashPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest crypt = MessageDigest.getInstance("SHA-512");
+        crypt.reset();
+        byte[] passwordBytes = password.getBytes("UTF-8");
+        crypt.update(passwordBytes);
+        byte[] digest = crypt.digest();
+        BigInteger digestAsBigInteger = new BigInteger(1, digest);
+        return digestAsBigInteger.toString(16);
     }
 }

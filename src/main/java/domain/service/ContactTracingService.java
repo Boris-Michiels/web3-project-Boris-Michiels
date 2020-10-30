@@ -1,6 +1,7 @@
-package domain.model;
+package domain.service;
 
 import domain.db.PersonDBSQL;
+import domain.model.Person;
 
 import java.util.List;
 

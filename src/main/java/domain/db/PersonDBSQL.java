@@ -32,6 +32,9 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(5, person.getLastName());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
+            if (e.getMessage().contains("duplicate key value")) {
+                throw new DbException("User id already taken");
+            }
             throw new DbException(e);
         }
     }
@@ -44,11 +47,10 @@ public class PersonDBSQL implements PersonDB {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
             ResultSet result = statementSQL.executeQuery();
             while (result.next()) {
-                Person person = createPerson(result);
-                persons.add(person);
+                persons.add(createPerson(result));
             }
         } catch (SQLException e) {
-            throw new DbException(e.getMessage(), e);
+            throw new DbException(e);
         }
         return persons;
     }
@@ -64,11 +66,10 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(1, userid);
             ResultSet result = statementSQL.executeQuery();
             if (result.next()) {
-                Person person = createPerson(result);
-                return person;
+                return createPerson(result);
             } else throw new DbException("Userid not found");
         } catch (SQLException e) {
-            throw new DbException(e.getMessage(), e);
+            throw new DbException(e);
         }
     }
 
@@ -84,7 +85,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(2, person.getUserid());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
-            throw new DbException(e.getMessage(), e);
+            throw new DbException(e);
         }
     }
 
@@ -106,9 +107,9 @@ public class PersonDBSQL implements PersonDB {
     private Person createPerson(ResultSet result) throws SQLException {
         String userid = result.getString("userid");
         String email = result.getString("email");
-        String password = result.getString("password");
+        String hashedPassword = result.getString("password");
         String firstname = result.getString("firstname");
         String lastname = result.getString("lastname");
-        return new Person(userid, email, password, firstname, lastname);
+        return new Person(userid, email, hashedPassword, firstname, lastname);
     }
 }
