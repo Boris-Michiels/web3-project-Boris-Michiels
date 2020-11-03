@@ -54,7 +54,7 @@ public class Add extends RequestHandler {
             person.setEmail(email);
             request.setAttribute("emailPreviousValue", email);
             request.setAttribute("emailClass", "has-success");
-        } catch (DomainException | IllegalArgumentException d) {
+        } catch (DomainException d) {
             errors.add(d.getMessage());
             request.setAttribute("emailClass", "has-error");
         }

@@ -44,7 +44,7 @@ public class Person {
         Pattern p = Pattern.compile(USERID_PATTERN);
         Matcher m = p.matcher(email);
         if (!m.matches()) {
-            throw new IllegalArgumentException("Email not valid");
+            throw new DomainException("Email not valid");
         }
         this.email = email;
     }
