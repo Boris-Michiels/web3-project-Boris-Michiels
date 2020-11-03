@@ -33,7 +33,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             if (e.getMessage().contains("duplicate key value")) {
-                throw new DbException("User id already taken");
+                throw new DbException("User already exists");
             }
             throw new DbException(e);
         }

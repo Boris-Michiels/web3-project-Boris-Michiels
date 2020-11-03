@@ -21,11 +21,11 @@ public class Add extends RequestHandler {
         setFirstName(person, request, errors);
         setLastName(person, request, errors);
 
-        String destination = "register.jsp";
+        String destination = "Controller?command=Register";
         if (errors.size() == 0) {
             try {
                 getService().addPerson(person);
-                destination = "Controller?command=Overview";
+                destination = "Controller?command=Home";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }

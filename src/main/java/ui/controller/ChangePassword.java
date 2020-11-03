@@ -22,6 +22,6 @@ public class ChangePassword extends RequestHandler {
         } catch (DomainException e) {
             request.setAttribute("newPMessage", e.getMessage());
         }
-        return "profile.jsp";
+        return "Controller?command=Profile";
     }
 }

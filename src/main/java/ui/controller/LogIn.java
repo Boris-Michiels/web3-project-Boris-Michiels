@@ -27,6 +27,6 @@ public class LogIn extends RequestHandler {
         } catch (DbException | DomainException e) {
             request.setAttribute("message", e.getMessage());
         }
-        return "profile.jsp";
+        return "Controller?command=Profile";
     }
 }

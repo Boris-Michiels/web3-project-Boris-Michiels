@@ -64,7 +64,7 @@
                     </p>
                 </form>
 
-                <form method="post" action="removeConfirmation.jsp" novalidate>
+                <form method="post" action="Controller?command=RemoveConfirmation" novalidate>
                     <p>
                         <input type="submit" id="removeConfirmation" value="Remove account">
                     </p>
