@@ -78,11 +78,14 @@ public class PersonDBSQL implements PersonDB {
         if (person == null) {
             throw new DbException("Person is null");
         }
-        String sql = String.format("UPDATE %s.person SET password = ? WHERE userid = ?", this.schema);
+        String sql = String.format("UPDATE %s.person SET email = ?, password = ?, firstname = ?, lastname = ? WHERE userid = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
-            statementSQL.setString(1, person.getPassword());
-            statementSQL.setString(2, person.getUserid());
+            statementSQL.setString(1, person.getEmail());
+            statementSQL.setString(2, person.getPassword());
+            statementSQL.setString(3, person.getFirstName());
+            statementSQL.setString(4, person.getLastName());
+            statementSQL.setString(5, person.getUserid());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e);
