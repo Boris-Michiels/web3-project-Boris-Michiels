@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +10,9 @@
 </head>
 <body>
 <div id="container">
-    <header>
-        <h1><span>Restaurant Contact Tracer</span></h1>
-
-        <jsp:include page="nav.jsp">
-            <jsp:param name="page" value="home"/>
-        </jsp:include>
-
-        <h2>Home</h2>
-    </header>
+    <jsp:include page="header.jsp">
+        <jsp:param name="title" value="Home"/>
+    </jsp:include>
 
     <main>
         <p>
@@ -31,9 +25,7 @@
         </p>
     </main>
 
-    <footer>
-        &copy; Webontwikkeling 3, UC Leuven-Limburg
-    </footer>
+    <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

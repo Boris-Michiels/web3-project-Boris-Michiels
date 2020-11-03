@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +10,9 @@
 </head>
 <body>
 <div id="container">
-    <header>
-        <h1><span>Restaurant Contact Tracer</span></h1>
-
-        <jsp:include page="nav.jsp">
-            <jsp:param name="page" value="profile"/>
-        </jsp:include>
-
-        <h2>Profile</h2>
-    </header>
+    <jsp:include page="header.jsp">
+        <jsp:param name="title" value="Profile"/>
+    </jsp:include>
 
     <main>
         <c:choose>
@@ -44,9 +38,9 @@
                 </form>
             </c:when>
             <c:otherwise>
-                <p id="loggedin">Welcome ${person.firstName}!</p>
+                <h3>Welcome ${person.firstName}</h3>
                 <br>
-                <p>Manage your account!</p>
+                <p>Manage your account</p>
 
                 <form method="post" action="Controller?command=LogOut" novalidate>
                     <p>
@@ -79,9 +73,7 @@
         </c:choose>
     </main>
 
-    <footer>
-        &copy; Webontwikkeling 3, UC Leuven-Limburg
-    </footer>
+    <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

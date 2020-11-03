@@ -1,26 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div id="container">
-    <header>
-        <h1><span>Restaurant Contact Tracer</span></h1>
-
-        <jsp:include page="nav.jsp">
-            <jsp:param name="page" value="profile"/>
-        </jsp:include>
-
-        <h2>Remove account?</h2>
-    </header>
+    <jsp:include page="header.jsp">
+        <jsp:param name="title" value="Profile"/>
+    </jsp:include>
 
     <main>
+        <h3>Remove Account?</h3>
+        <br>
         <p>Are you sure you want to remove your account? This action can not be undone.</p>
 
         <form method="post" action="Controller?command=Remove" novalidate>
@@ -33,9 +29,7 @@
         </form>
     </main>
 
-    <footer>
-        &copy; Webontwikkeling 3, UC Leuven-Limburg
-    </footer>
+    <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>
