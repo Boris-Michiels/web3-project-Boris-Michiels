@@ -28,7 +28,7 @@
                         <td>${contact.dateString}</td>
                         <td>${contact.hour}</td>
                         <td>${contact.firstName} ${contact.lastName}</td>
-                        <td><a href="Controller?command=RemoveContact&firstName=${contact.firstName}&lastName=${contact.lastName}">Remove</a></td>
+                        <td><a href="Controller?command=RemoveContactConfirmation&firstName=${contact.firstName}&lastName=${contact.lastName}">Remove</a></td>
                     </tr>
                 </c:forEach>
                 <caption>Contacts Overview</caption>
@@ -48,7 +48,7 @@
 
         <form method="post" action="Controller?command=AddContact" novalidate>
             <p>
-                <input type="hidden" id="userid" name="userid" value="${person.userid}" required>
+                <input type="hidden" id="userid" name="userid" value="${person.userid}">
             </p>
             <p>
                 <label for="firstName">First Name</label>

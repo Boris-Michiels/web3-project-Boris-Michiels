@@ -15,9 +15,9 @@
     </jsp:include>
 
     <main>
-        <h3>Remove Account?</h3>
+        <h3>Delete Account?</h3>
         <br>
-        <p>Are you sure you want to remove your account? This action can not be undone.</p>
+        <p>Are you sure you want to delete your account? This action can not be undone.</p>
 
         <form method="post" action="Controller?command=Delete" novalidate>
             <p>
