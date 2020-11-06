@@ -19,9 +19,7 @@ public class PersonDBSQL implements PersonDB {
 
     @Override
     public void add(Person person) {
-        if (person == null) {
-            throw new DbException("Person is null");
-        }
+        if (person == null) throw new DbException("Person is null");
         String sql = String.format("INSERT INTO %s.person (userid, email, password, firstname, lastname) VALUES (?, ?, ?, ?, ?)", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
@@ -32,9 +30,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(5, person.getLastName());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
-            if (e.getMessage().contains("duplicate key value")) {
-                throw new DbException("User already exists");
-            }
+            if (e.getMessage().contains("duplicate key value")) throw new DbException("User already exists");
             throw new DbException(e);
         }
     }
@@ -57,17 +53,14 @@ public class PersonDBSQL implements PersonDB {
 
     @Override
     public Person get(String userid) {
-        if (userid == null || userid.isEmpty()) {
-            throw new DbException("No id given");
-        }
+        if (userid == null || userid.isEmpty()) throw new DbException("No id given");
         String sql = String.format("SELECT * FROM %s.person WHERE userid = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
             statementSQL.setString(1, userid);
             ResultSet result = statementSQL.executeQuery();
-            if (result.next()) {
-                return createPerson(result);
-            } else throw new DbException("Userid not found");
+            if (result.next()) return createPerson(result);
+            else throw new DbException("Userid not found");
         } catch (SQLException e) {
             throw new DbException(e);
         }
@@ -75,9 +68,7 @@ public class PersonDBSQL implements PersonDB {
 
     @Override
     public void update(Person person) {
-        if (person == null) {
-            throw new DbException("Person is null");
-        }
+        if (person == null) throw new DbException("Person is null");
         String sql = String.format("UPDATE %s.person SET email = ?, password = ?, firstname = ?, lastname = ? WHERE userid = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
@@ -93,14 +84,12 @@ public class PersonDBSQL implements PersonDB {
     }
 
     @Override
-    public void delete(String userid) {
-        if (userid == null) {
-            throw new DbException("No id given");
-        }
+    public void delete(Person person) {
+        if (person == null) throw new DbException("No person given");
         String sql = String.format("DELETE FROM %s.person WHERE userid = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
-            statementSQL.setString(1, userid);
+            statementSQL.setString(1, person.getUserid());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e);

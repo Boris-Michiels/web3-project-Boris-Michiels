@@ -19,12 +19,12 @@
         <br>
         <p>Are you sure you want to remove your account? This action can not be undone.</p>
 
-        <form method="post" action="Controller?command=Remove" novalidate>
+        <form method="post" action="Controller?command=Delete" novalidate>
             <p>
-                <input type="submit" name="confirmation" id="noRemove" value="Don't remove">
+                <input type="submit" name="confirmation" id="noDelete" value="Don't delete">
             </p>
             <p>
-                <input type="submit" name="confirmation" id="remove" value="Remove">
+                <input type="submit" name="confirmation" id="delete" value="Delete">
             </p>
         </form>
     </main>

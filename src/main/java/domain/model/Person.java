@@ -25,27 +25,21 @@ public class Person {
     public Person() {
     }
 
+    public void setUserid(String userid) {
+        if (userid == null || userid.isEmpty()) throw new DomainException("No userid given");
+        this.userid = userid;
+    }
+
     public String getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
-        if (userid == null || userid.isEmpty()) {
-            throw new DomainException("No userid given");
-        }
-        this.userid = userid;
-    }
-
     public void setEmail(String email) {
-        if (email == null || email.isEmpty()) {
-            throw new DomainException("No email given");
-        }
+        if (email == null || email.isEmpty()) throw new DomainException("No email given");
         String USERID_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern p = Pattern.compile(USERID_PATTERN);
         Matcher m = p.matcher(email);
-        if (!m.matches()) {
-            throw new DomainException("Email not valid");
-        }
+        if (!m.matches()) throw new DomainException("Email not valid");
         this.email = email;
     }
 
@@ -53,14 +47,26 @@ public class Person {
         return email;
     }
 
+    public void setPassword(String password) {
+        if (password == null || password.isEmpty()) throw new DomainException("No password given");
+        try {
+            this.password = hashPassword(password);
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        if (hashedPassword == null || hashedPassword.isEmpty()) throw new DomainException("No password given");
+        this.password = hashedPassword;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public boolean isCorrectPassword(String password) {
-        if (password == null || password.isEmpty()) {
-            throw new DomainException("No password given");
-        }
+        if (password == null || password.isEmpty()) throw new DomainException("No password given");
         try {
             return getPassword().equals(hashPassword(password));
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
@@ -69,44 +75,22 @@ public class Person {
         }
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        if (hashedPassword == null || hashedPassword.isEmpty()) {
-            throw new DomainException("No password given");
-        }
-        this.password = hashedPassword;
-    }
-
-    public void setPassword(String password) {
-        if (password == null || password.isEmpty()) {
-            throw new DomainException("No password given");
-        }
-        try {
-            this.password = hashPassword(password);
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-            System.out.println(e.getMessage());
-        }
+    public void setFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) throw new DomainException("No firstname given");
+        this.firstName = firstName;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        if (firstName == null || firstName.isEmpty()) {
-            throw new DomainException("No firstname given");
-        }
-        this.firstName = firstName;
+    public void setLastName(String lastName) {
+        if (lastName == null || lastName.isEmpty()) throw new DomainException("No last name given");
+        this.lastName = lastName;
     }
 
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        if (lastName == null || lastName.isEmpty()) {
-            throw new DomainException("No last name given");
-        }
-        this.lastName = lastName;
     }
 
     @Override

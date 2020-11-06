@@ -9,5 +9,5 @@ public interface PersonDB {
     List<Person> getAll();
     Person get(String userid);
     void update(Person person);
-    void delete(String userid);
+    void delete(Person person);
 }

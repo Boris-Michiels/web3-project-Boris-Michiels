@@ -32,7 +32,7 @@
             </p>
             <p>
                 <label for="firstName">First Name</label>
-                <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${firstNamePreviousValue}" required value="">
+                <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${firstNamePreviousValue}" required>
             </p>
             <p>
                 <label for="lastName">Last Name</label>

@@ -38,7 +38,7 @@
                 </form>
             </c:when>
             <c:otherwise>
-                <h3>Welcome ${person.firstName}</h3>
+                <h3>Welcome ${person.firstName} ${person.lastName}</h3>
                 <br>
                 <p>Manage your account</p>
 
@@ -64,9 +64,9 @@
                     </p>
                 </form>
 
-                <form method="post" action="Controller?command=RemoveConfirmation" novalidate>
+                <form method="post" action="Controller?command=DeleteConfirmation" novalidate>
                     <p>
-                        <input type="submit" id="removeConfirmation" value="Remove account">
+                        <input type="submit" id="deleteConfirmation" value="Delete account">
                     </p>
                 </form>
             </c:otherwise>

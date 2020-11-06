@@ -30,7 +30,7 @@ public class Controller extends HttpServlet {
                 RequestHandler handler = handlerFactory.getHandler(command, contactTracingService);
                 destination = handler.handleRequest(request, response);
             } catch (Exception exc) {
-                System.out.println(exc.getMessage());
+                System.out.println(exc);
             }
         }
         request.getRequestDispatcher(destination).forward(request, response);

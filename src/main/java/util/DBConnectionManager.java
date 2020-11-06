@@ -36,9 +36,7 @@ public class DBConnectionManager {
     }
 
     public static DBConnectionManager getInstance(String dbURL) {
-        if (dbConnectionManager_instance == null) {
-            dbConnectionManager_instance = new DBConnectionManager(dbURL);
-        }
+        if (dbConnectionManager_instance == null) dbConnectionManager_instance = new DBConnectionManager(dbURL);
         return dbConnectionManager_instance;
     }
 
