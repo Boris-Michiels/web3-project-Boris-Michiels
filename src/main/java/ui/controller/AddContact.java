@@ -15,7 +15,6 @@ import java.util.List;
 public class AddContact extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        String destination = "Controller?command=Contacts";
         ArrayList<String> errors = new ArrayList();
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
@@ -24,7 +23,7 @@ public class AddContact extends RequestHandler {
         else {
             Contact contact = new Contact();
 
-            setUserid(contact, request, errors);
+            setUserid(person, contact, request, errors);
             setFirstName(contact, request, errors);
             setLastname(contact, request, errors);
             setDate(contact, request, errors);
@@ -45,8 +44,8 @@ public class AddContact extends RequestHandler {
         return "Controller?command=Contacts";
     }
 
-    private void setUserid(Contact contact, HttpServletRequest request, ArrayList<String> errors) {
-        String userid = request.getParameter("userid");
+    private void setUserid(Person person, Contact contact, HttpServletRequest request, ArrayList<String> errors) {
+        String userid = person.getUserid();
         try {
             contact.setUserid(userid);
             request.setAttribute("useridPreviousValue", userid);

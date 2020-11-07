@@ -36,6 +36,8 @@
             <br>
         </c:if>
 
+        <h3>Add a contact</h3>
+
         <c:if test="${not empty errors}">
             <div class="alert-danger">
                 <ul>
@@ -47,9 +49,6 @@
         </c:if>
 
         <form method="post" action="Controller?command=AddContact" novalidate>
-            <p>
-                <input type="hidden" id="userid" name="userid" value="${person.userid}">
-            </p>
             <p>
                 <label for="firstName">First Name</label>
                 <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${firstNamePreviousValue}" required>
