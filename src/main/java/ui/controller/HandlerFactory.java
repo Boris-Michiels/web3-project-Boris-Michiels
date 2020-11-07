@@ -3,7 +3,6 @@ package ui.controller;
 import domain.service.ContactTracingService;
 
 public class HandlerFactory {
-
     public RequestHandler getHandler(String handlerName, ContactTracingService model) {
         RequestHandler handler = null;
         try {

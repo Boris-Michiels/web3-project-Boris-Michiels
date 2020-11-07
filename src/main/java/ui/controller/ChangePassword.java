@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class ChangePassword extends RequestHandler {
-
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String newPassword = request.getParameter("newPassword");

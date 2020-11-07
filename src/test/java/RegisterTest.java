@@ -14,17 +14,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class RegisterTest {
 	private WebDriver driver;
 	private String path = "http://localhost:8080/Controller";
-	
+
 	@Before
 	public void setUp() {
-		//System.setProperty("webdriver.chrome.driver", "/Users/.../web3pers/chromedriver");
-			// windows: gebruik dubbele \\ om pad aan te geven
-			// hint: zoek een werkende test op van web 2 ...
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\boris\\Documents\\Programs\\Selenium\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get(path+"?command=Register");
 	}
-	
+
 	@After
 	public void clean() {
 	    driver.quit();

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LogIn extends RequestHandler {
-
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String userid = request.getParameter("userid");

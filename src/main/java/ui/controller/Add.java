@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Add extends RequestHandler {
-
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String destination = "Controller?command=Register";

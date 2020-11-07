@@ -11,9 +11,9 @@ public class RemoveContact extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String confirmation = request.getParameter("confirmation");
-        HttpSession session = request.getSession();
-        Person person = (Person) session.getAttribute("person");
-        if (person != null && !confirmation.isEmpty() && confirmation.equals("Remove")) {
+        if (!confirmation.isEmpty() && confirmation.equals("Remove")) {
+            HttpSession session = request.getSession();
+            Person person = (Person) session.getAttribute("person");
             String userid = person.getUserid();
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");

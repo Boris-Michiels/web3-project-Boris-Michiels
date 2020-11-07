@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class Overview extends RequestHandler {
-
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         List<Person> persons = getService().getAllPersons();
