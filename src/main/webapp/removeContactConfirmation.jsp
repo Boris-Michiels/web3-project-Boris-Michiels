@@ -24,13 +24,19 @@
 
         <form method="post" action="Controller?command=RemoveContact" novalidate>
             <p>
-                <input type="hidden" id="userid" name="userid" value="${person.userid}">
+                <input type="hidden" id="userid" name="userid" value="${contact.userid}">
             </p>
             <p>
                 <input type="hidden" id="firstName" name="firstName" value="${contact.firstName}">
             </p>
             <p>
                 <input type="hidden" id="lastName" name="lastName" value="${contact.lastName}">
+            </p>
+            <p>
+                <input type="hidden" id="date" name="date" value="${contact.dateStringJDBC}">
+            </p>
+            <p>
+                <input type="hidden" id="time" name="time" value="${contact.timeStringJDBC}">
             </p>
             <p>
                 <input type="submit" name="confirmation" id="noRemove" value="Don't remove">

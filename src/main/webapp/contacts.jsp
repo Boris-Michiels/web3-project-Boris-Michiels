@@ -26,9 +26,9 @@
                 <c:forEach var="contact" items="${contacts}">
                     <tr>
                         <td>${contact.dateString}</td>
-                        <td>${contact.hour}</td>
+                        <td>${contact.timeString}</td>
                         <td>${contact.firstName} ${contact.lastName}</td>
-                        <td><a href="Controller?command=RemoveContactConfirmation&firstName=${contact.firstName}&lastName=${contact.lastName}">Remove</a></td>
+                        <td><a href="Controller?command=RemoveContactConfirmation&userid=${contact.userid}&firstName=${contact.firstName}&lastName=${contact.lastName}&date=${contact.dateStringJDBC}&time=${contact.timeStringJDBC}">Remove</a></td>
                     </tr>
                 </c:forEach>
                 <caption>Contacts Overview</caption>

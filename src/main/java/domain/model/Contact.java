@@ -15,9 +15,10 @@ public class Contact {
     private String phoneNumber;
     private String email;
 
-    private final DateTimeFormatter setDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private final DateTimeFormatter setTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    private final DateTimeFormatter dateFormatterJDBC = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    private final DateTimeFormatter timeFormatterJDBC = DateTimeFormatter.ofPattern("HH:mm:ss");
     private final DateTimeFormatter hourFormatter = DateTimeFormatter.ofPattern("HH'h'");
 
     public Contact(String userid, String firstName, String lastName, LocalDate date, LocalTime time, String phoneNumber, String email) {
@@ -67,7 +68,7 @@ public class Contact {
 
     public void setDateString(String date) {
         if (date == null || date.trim().isEmpty()) throw new DomainException("No date given");
-        this.date = LocalDate.parse(date, setDateFormatter);
+        this.date = LocalDate.parse(date, dateFormatterJDBC);
     }
 
     public LocalDate getDate() {
@@ -78,6 +79,10 @@ public class Contact {
         return date.format(dateFormatter);
     }
 
+    public String getDateStringJDBC() {
+        return date.format(dateFormatterJDBC);
+    }
+
     public void setTime(LocalTime time) {
         if (time == null) throw new DomainException("No time given");
         this.time = time;
@@ -85,11 +90,19 @@ public class Contact {
 
     public void setTimeString(String time) {
         if (time == null || time.trim().isEmpty()) throw new DomainException("No time given");
-        this.time = LocalTime.parse(time, setTimeFormatter);
+        this.time = LocalTime.parse(time, timeFormatter);
     }
 
     public LocalTime getTime() {
         return time;
+    }
+
+    public String getTimeString() {
+        return time.format(timeFormatter);
+    }
+
+    public String getTimeStringJDBC() {
+        return time.format(timeFormatterJDBC);
     }
 
     public String getHour() {

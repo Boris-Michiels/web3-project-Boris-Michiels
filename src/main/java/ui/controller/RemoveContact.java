@@ -12,12 +12,12 @@ public class RemoveContact extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String confirmation = request.getParameter("confirmation");
         if (!confirmation.isEmpty() && confirmation.equals("Remove")) {
-            HttpSession session = request.getSession();
-            Person person = (Person) session.getAttribute("person");
-            String userid = person.getUserid();
+            String userid = request.getParameter("userid");
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
-            Contact contact = getService().getOneContact(userid, firstName, lastName);
+            String date = request.getParameter("date");
+            String time = request.getParameter("time");
+            Contact contact = getService().getOneContact(userid, firstName, lastName, date, time);
             getService().removeOneContact(contact);
         }
         return "Controller?command=Contacts";

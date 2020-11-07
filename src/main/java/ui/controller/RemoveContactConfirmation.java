@@ -10,12 +10,12 @@ import javax.servlet.http.HttpSession;
 public class RemoveContactConfirmation extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        Person person = (Person) session.getAttribute("person");
-        String userid = person.getUserid();
+        String userid = request.getParameter("userid");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        Contact contact = getService().getOneContact(userid, firstName, lastName);
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        Contact contact = getService().getOneContact(userid, firstName, lastName, date, time);
         request.setAttribute("contact", contact);
         return "removeContactConfirmation.jsp";
     }

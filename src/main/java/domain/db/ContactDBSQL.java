@@ -74,14 +74,16 @@ public class ContactDBSQL implements ContactDB {
     }
 
     @Override
-    public Contact getOne(String userid, String firstName, String lastName) {
+    public Contact getOne(String userid, String firstName, String lastName, String date, String time) {
         if (userid == null || userid.isEmpty()) throw new DbException("No id given");
-        String sql = String.format("SELECT * FROM %s.contact WHERE userid = ? AND firstname = ? AND lastname = ?", this.schema);
+        String sql = String.format("SELECT * FROM %s.contact WHERE userid = ? AND firstname = ? AND lastname = ? AND date = ? AND time = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
             statementSQL.setString(1, userid);
             statementSQL.setString(2, firstName);
             statementSQL.setString(3, lastName);
+            statementSQL.setDate(4, Date.valueOf(date));
+            statementSQL.setTime(5, Time.valueOf(time));
             ResultSet result = statementSQL.executeQuery();
             if (result.next()) return createContact(result);
             else throw new DbException("Contact not found");
@@ -116,12 +118,14 @@ public class ContactDBSQL implements ContactDB {
     @Override
     public void removeOne(Contact contact) {
         if (contact == null) throw new DbException("No contact given");
-        String sql = String.format("DELETE FROM %s.contact WHERE userid = ? AND firstname = ? AND lastname = ?", this.schema);
+        String sql = String.format("DELETE FROM %s.contact WHERE userid = ? AND firstname = ? AND lastname = ? AND date = ? AND time = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
             statementSQL.setString(1, contact.getUserid());
             statementSQL.setString(2, contact.getFirstName());
             statementSQL.setString(3, contact.getLastName());
+            statementSQL.setDate(4, Date.valueOf(contact.getDate()));
+            statementSQL.setTime(5, Time.valueOf(contact.getTime()));
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e);
