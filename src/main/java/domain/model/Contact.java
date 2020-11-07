@@ -15,7 +15,9 @@ public class Contact {
     private String phoneNumber;
     private String email;
 
+    private final DateTimeFormatter setDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final DateTimeFormatter setTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     private final DateTimeFormatter hourFormatter = DateTimeFormatter.ofPattern("HH'h'");
 
     public Contact(String userid, String firstName, String lastName, LocalDate date, LocalTime time, String phoneNumber, String email) {
@@ -65,7 +67,7 @@ public class Contact {
 
     public void setDateString(String date) {
         if (date == null || date.trim().isEmpty()) throw new DomainException("No date given");
-        this.date = LocalDate.parse(date);
+        this.date = LocalDate.parse(date, setDateFormatter);
     }
 
     public LocalDate getDate() {
@@ -83,7 +85,7 @@ public class Contact {
 
     public void setTimeString(String time) {
         if (time == null || time.trim().isEmpty()) throw new DomainException("No time given");
-        this.time = LocalTime.parse(time);
+        this.time = LocalTime.parse(time, setTimeFormatter);
     }
 
     public LocalTime getTime() {
