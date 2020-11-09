@@ -15,7 +15,13 @@
     </jsp:include>
 
     <main>
+        <c:if test="${not empty contactRemovedMessage}">
+            <div class="alert-danger">
+                <p>${contactRemovedMessage}</p>
+            </div>
+        </c:if>
         <c:if test="${not empty contacts}">
+            <h3>Contact overview</h3>
             <table>
                 <tr>
                     <th>Date</th>
@@ -37,7 +43,6 @@
         </c:if>
 
         <h3>Add a contact</h3>
-
         <c:if test="${not empty errors}">
             <div class="alert-danger">
                 <ul>

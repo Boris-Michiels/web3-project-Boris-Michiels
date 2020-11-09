@@ -19,6 +19,7 @@ public class RemoveContact extends RequestHandler {
             String time = request.getParameter("time");
             Contact contact = getService().getOneContact(userid, firstName, lastName, date, time);
             getService().removeOneContact(contact);
+            request.setAttribute("contactRemovedMessage", "Contact has been removed");
         }
         return "Controller?command=Contacts";
     }
