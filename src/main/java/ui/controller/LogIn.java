@@ -11,20 +11,20 @@ import javax.servlet.http.HttpSession;
 public class LogIn extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
+        String userid = request.getParameter("useridLogIn");
+        String password = request.getParameter("passwordLogIn");
         try {
             Person person = getService().getPerson(userid);
-            request.setAttribute("useridPreviousValue", userid);
+            request.setAttribute("useridLogInPreviousValue", userid);
             boolean correct = false;
             correct = person.isCorrectPassword(password);
 
             if (correct) {
                 HttpSession session = request.getSession();
                 session.setAttribute("person", person);
-            } else request.setAttribute("message", "No valid userid/password");
+            } else request.setAttribute("logInMessage", "No valid userid/password");
         } catch (DbException | DomainException e) {
-            request.setAttribute("message", e.getMessage());
+            request.setAttribute("logInMessage", e.getMessage());
         }
         return "Controller?command=Profile";
     }

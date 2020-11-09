@@ -17,9 +17,9 @@ public class ChangePassword extends RequestHandler {
             Person person = (Person) session.getAttribute("person");
             person.setPassword(newPassword);
             getService().updatePerson(person);
-            request.setAttribute("newPMessage", "Your password has been updated");
+            request.setAttribute("newPwMessage", "Your password has been updated");
         } catch (DomainException e) {
-            request.setAttribute("newPMessage", e.getMessage());
+            request.setAttribute("newPwMessage", e.getMessage());
         }
         return "Controller?command=Profile";
     }

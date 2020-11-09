@@ -16,7 +16,7 @@ public class Delete extends RequestHandler {
             String userid = person.getUserid();
             getService().deletePerson(person);
             getService().removeContacts(userid);
-            request.setAttribute("message", "Your account has been removed!");
+            request.setAttribute("deleteMessage", "Your account has been removed!");
             return "Controller?command=LogOut";
         }
         return "Controller?command=Profile";

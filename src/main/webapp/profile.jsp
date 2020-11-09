@@ -17,29 +17,75 @@
     <main>
         <c:choose>
             <c:when test="${empty person}">
-                <c:if test="${not empty message}">
+                <c:if test="${not empty deleteMessage}">
                     <div class="alert-danger">
-                        <p>${message}</p>
+                        <p>${deleteMessage}</p>
                     </div>
                 </c:if>
 
+                <h3>Log in</h3>
+                <c:if test="${not empty logInMessage}">
+                    <div class="alert-danger">
+                        <p>${logInMessage}</p>
+                    </div>
+                </c:if>
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
-                        <label for="userid">User id (e-mail)</label>
-                        <input type="text" id="userid" name="userid" value="${useridPreviousValue}" required>
+                        <label for="useridLogIn">User id</label>
+                        <input type="text" id="useridLogin" name="useridLogIn" value="${useridLogInPreviousValue}" required>
                     </p>
                     <p>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <label for="passwordLogIn">Password</label>
+                        <input type="password" id="passwordLogIn" name="passwordLogIn" required>
                     </p>
                     <p>
                         <input type="submit" id="logIn" value="Log In">
                     </p>
                 </form>
+
+                <h3>Register</h3>
+                <c:if test="${not empty errors}">
+                    <div class="alert-danger">
+                        <ul>
+                            <c:forEach var="error" items="${errors}">
+                                <li>${error}</li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </c:if>
+                <form method="post" action="Controller?command=Register" novalidate>
+                    <p>
+                        <label for="userid">User id</label>
+                        <input class="form-group ${useridClass}" type="text" id="userid" name="userid" value="${useridPreviousValue}" required>
+                    </p>
+                    <p>
+                        <label for="firstName">First Name</label>
+                        <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${firstNamePreviousValue}" required>
+                    </p>
+                    <p>
+                        <label for="lastName">Last Name</label>
+                        <input class="form-group ${lastNameClass}" type="text" id="lastName" name="lastName" value="${lastNamePreviousValue}" required>
+                    </p>
+                    <p>
+                        <label for="email">Email</label>
+                        <input class="form-group ${emailClass}" type="email" id="email" name="email" value="${emailPreviousValue}" required>
+                    </p>
+                    <p>
+                        <label for="password">Password</label>
+                        <input class="form-group ${passwordClass}" type="password" id="password" name="password" value="${passwordPreviousValue}" required>
+                    </p>
+                    <p>
+                        <input type="submit" id="signUp" value="Sign Up">
+                    </p>
+                </form>
             </c:when>
             <c:otherwise>
                 <h3>Welcome ${person.firstName} ${person.lastName}</h3>
-                <br>
+                <c:if test="${not empty newPwMessage}">
+                    <div class="alert-danger">
+                        <p>${newPwMessage}</p>
+                    </div>
+                </c:if>
                 <p>Manage your account</p>
 
                 <form method="post" action="Controller?command=LogOut" novalidate>
@@ -47,12 +93,6 @@
                         <input type="submit" id="logOut" value="Log Out">
                     </p>
                 </form>
-
-                <c:if test="${not empty newPMessage}">
-                    <div class="alert-danger">
-                        <p>${newPMessage}</p>
-                    </div>
-                </c:if>
 
                 <form method="post" action="Controller?command=ChangePassword" novalidate>
                     <p>
