@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
         <c:choose>
             <c:when test="${empty person}">
                 <c:if test="${not empty deleteMessage}">
-                    <div class="alert-danger">
+                    <div class="alert-success">
                         <p>${deleteMessage}</p>
                     </div>
                 </c:if>
@@ -82,7 +83,7 @@
             <c:otherwise>
                 <h3>Welcome ${person.firstName} ${person.lastName}</h3>
                 <c:if test="${not empty newPwMessage}">
-                    <div class="alert-danger">
+                    <div class="${fn:contains(newPwMessage, "No") ? "alert-danger" : "alert-success"}">
                         <p>${newPwMessage}</p>
                     </div>
                 </c:if>

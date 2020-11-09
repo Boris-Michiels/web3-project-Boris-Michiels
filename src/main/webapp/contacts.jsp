@@ -16,7 +16,7 @@
 
     <main>
         <c:if test="${not empty contactRemovedMessage}">
-            <div class="alert-danger">
+            <div class="alert-success">
                 <p>${contactRemovedMessage}</p>
             </div>
         </c:if>
