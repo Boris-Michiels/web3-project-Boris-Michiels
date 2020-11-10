@@ -101,7 +101,7 @@ form {
 	border: 1px solid #50b948;
 	color: #50b948;
 }
-.alert-danger, .alert-success ul {
+.alert-danger ul, .alert-success ul {
     list-style-type: none;
 }
 label,input,textarea {

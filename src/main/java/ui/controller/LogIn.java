@@ -16,9 +16,8 @@ public class LogIn extends RequestHandler {
         try {
             Person person = getService().getPerson(userid);
             request.setAttribute("useridLogInPreviousValue", userid);
-            boolean correct = false;
+            boolean correct;
             correct = person.isCorrectPassword(password);
-
             if (correct) {
                 HttpSession session = request.getSession();
                 session.setAttribute("person", person);

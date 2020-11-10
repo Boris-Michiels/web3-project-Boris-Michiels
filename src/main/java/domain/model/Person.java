@@ -9,24 +9,26 @@ import java.util.regex.Pattern;
 
 public class Person {
     private String userid;
-    private String email;
-    private String password;
     private String firstName;
     private String lastName;
+    private String email;
+    private String password;
+    private String role;
 
-    public Person(String userid, String email, String hashedPassword, String firstName, String lastName) {
+    public Person(String userid, String firstName, String lastName, String email, String hashedPassword, String role) {
         setUserid(userid);
-        setEmail(email);
-        setHashedPassword(hashedPassword);
         setFirstName(firstName);
         setLastName(lastName);
+        setEmail(email);
+        setHashedPassword(hashedPassword);
+        setRole(role);
     }
 
     public Person() {
     }
 
     public void setUserid(String userid) {
-        if (userid == null || userid.isEmpty()) throw new DomainException("No userid given");
+        if (userid == null || userid.trim().isEmpty()) throw new DomainException("No userid given");
         this.userid = userid;
     }
 
@@ -34,8 +36,26 @@ public class Person {
         return userid;
     }
 
+    public void setFirstName(String firstName) {
+        if (firstName == null || firstName.trim().isEmpty()) throw new DomainException("No firstname given");
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setLastName(String lastName) {
+        if (lastName == null || lastName.trim().isEmpty()) throw new DomainException("No last name given");
+        this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setEmail(String email) {
-        if (email == null || email.isEmpty()) throw new DomainException("No email given");
+        if (email == null || email.trim().isEmpty()) throw new DomainException("No email given");
         String USERID_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern p = Pattern.compile(USERID_PATTERN);
         Matcher m = p.matcher(email);
@@ -48,7 +68,7 @@ public class Person {
     }
 
     public void setPassword(String password) {
-        if (password == null || password.isEmpty()) throw new DomainException("No password given");
+        if (password == null || password.trim().isEmpty()) throw new DomainException("No password given");
         try {
             this.password = hashPassword(password);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
@@ -57,7 +77,7 @@ public class Person {
     }
 
     public void setHashedPassword(String hashedPassword) {
-        if (hashedPassword == null || hashedPassword.isEmpty()) throw new DomainException("No password given");
+        if (hashedPassword == null || hashedPassword.trim().isEmpty()) throw new DomainException("No password given");
         this.password = hashedPassword;
     }
 
@@ -66,7 +86,7 @@ public class Person {
     }
 
     public boolean isCorrectPassword(String password) {
-        if (password == null || password.isEmpty()) throw new DomainException("No password given");
+        if (password == null || password.trim().isEmpty()) throw new DomainException("No password given");
         try {
             return getPassword().equals(hashPassword(password));
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
@@ -75,22 +95,13 @@ public class Person {
         }
     }
 
-    public void setFirstName(String firstName) {
-        if (firstName == null || firstName.isEmpty()) throw new DomainException("No firstname given");
-        this.firstName = firstName;
+    private void setRole(String role) {
+        if (role == null || role.trim().isEmpty()) throw new DomainException("Role is empty");
+        this.role = role;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setLastName(String lastName) {
-        if (lastName == null || lastName.isEmpty()) throw new DomainException("No last name given");
-        this.lastName = lastName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getRole() {
+        return role;
     }
 
     @Override

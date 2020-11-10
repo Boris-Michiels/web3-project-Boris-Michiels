@@ -14,7 +14,9 @@ public class Contacts extends RequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         if (person != null) {
-            List<Contact> contacts = getService().getContacts(person.getUserid());
+            List<Contact> contacts;
+            if (person.getRole().equals("admin")) contacts = getService().getAllContacts();
+            else contacts = getService().getContacts(person.getUserid());
             request.setAttribute("contacts", contacts);
         }
         return "contacts.jsp";

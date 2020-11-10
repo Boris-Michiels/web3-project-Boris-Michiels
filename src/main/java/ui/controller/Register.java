@@ -18,10 +18,10 @@ public class Register extends RequestHandler {
         Person person = new Person();
 
         setUserid(person, request, errors);
-        setEmail(person, request, errors);
-        setPassword(person, request, errors);
         setFirstName(person, request, errors);
         setLastName(person, request, errors);
+        setEmail(person, request, errors);
+        setPassword(person, request, errors);
 
         if (errors.size() == 0) {
             try {
@@ -48,30 +48,6 @@ public class Register extends RequestHandler {
         }
     }
 
-    private void setEmail(Person person, HttpServletRequest request, ArrayList<String> errors) {
-        String email = request.getParameter("email");
-        try {
-            person.setEmail(email);
-            request.setAttribute("emailPreviousValue", email);
-            request.setAttribute("emailClass", "has-success");
-        } catch (DomainException d) {
-            errors.add(d.getMessage());
-            request.setAttribute("emailClass", "has-error");
-        }
-    }
-
-    private void setPassword(Person person, HttpServletRequest request, ArrayList<String> errors) {
-        String password = request.getParameter("password");
-        try {
-            person.setPassword(password);
-            request.setAttribute("passwordPreviousValue", password);
-            request.setAttribute("passwordClass", "has-success");
-        } catch (DomainException d) {
-            errors.add(d.getMessage());
-            request.setAttribute("passwordClass", "has-error");
-        }
-    }
-
     private void setFirstName(Person person, HttpServletRequest request, ArrayList<String> errors) {
         String firstName = request.getParameter("firstName");
         try {
@@ -93,6 +69,30 @@ public class Register extends RequestHandler {
         } catch (DomainException d) {
             errors.add(d.getMessage());
             request.setAttribute("lastNameClass", "has-error");
+        }
+    }
+
+    private void setEmail(Person person, HttpServletRequest request, ArrayList<String> errors) {
+        String email = request.getParameter("email");
+        try {
+            person.setEmail(email);
+            request.setAttribute("emailPreviousValue", email);
+            request.setAttribute("emailClass", "has-success");
+        } catch (DomainException d) {
+            errors.add(d.getMessage());
+            request.setAttribute("emailClass", "has-error");
+        }
+    }
+
+    private void setPassword(Person person, HttpServletRequest request, ArrayList<String> errors) {
+        String password = request.getParameter("password");
+        try {
+            person.setPassword(password);
+            request.setAttribute("passwordPreviousValue", password);
+            request.setAttribute("passwordClass", "has-success");
+        } catch (DomainException d) {
+            errors.add(d.getMessage());
+            request.setAttribute("passwordClass", "has-error");
         }
     }
 

@@ -48,8 +48,8 @@ public class ContactTracingService {
         return getContactDBSQL().getAll();
     }
 
-    public Contact getOneContact(String userid, String firstName, String lastName, String date, String time) {
-        return getContactDBSQL().getOne(userid, firstName, lastName, date, time);
+    public Contact getOneContact(int contactid) {
+        return getContactDBSQL().getOne(contactid);
     }
 
     public void addContact(Contact contact) {

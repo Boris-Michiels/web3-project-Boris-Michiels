@@ -26,10 +26,9 @@ public class AddContact extends RequestHandler {
             setUserid(person, contact, request, errors);
             setFirstName(contact, request, errors);
             setLastname(contact, request, errors);
-            setDate(contact, request, errors);
-            setTime(contact, request, errors);
-            setPhoneNumber(contact, request, errors);
             setEmail(contact, request, errors);
+            setPhoneNumber(contact, request, errors);
+            setTimeStamp(contact, request, errors);
 
             if (errors.size() == 0) {
                 try {
@@ -80,27 +79,15 @@ public class AddContact extends RequestHandler {
         }
     }
 
-    private void setDate(Contact contact, HttpServletRequest request, ArrayList<String> errors) {
-        String date = request.getParameter("date");
+    private void setEmail(Contact contact, HttpServletRequest request, ArrayList<String> errors) {
+        String email = request.getParameter("email");
         try {
-            contact.setDateString(date);
-            request.setAttribute("datePreviousValue", date);
-            request.setAttribute("dateClass", "has-success");
+            contact.setEmail(email);
+            request.setAttribute("emailPreviousValue", email);
+            request.setAttribute("emailClass", "has-success");
         } catch (DomainException d) {
             errors.add(d.getMessage());
-            request.setAttribute("dateClass", "has-error");
-        }
-    }
-
-    private void setTime(Contact contact, HttpServletRequest request, ArrayList<String> errors) {
-        String time = request.getParameter("time");
-        try {
-            contact.setTimeString(time);
-            request.setAttribute("timePreviousValue", time);
-            request.setAttribute("timeClass", "has-success");
-        } catch (DomainException d) {
-            errors.add(d.getMessage());
-            request.setAttribute("timeClass", "has-error");
+            request.setAttribute("emailClass", "has-error");
         }
     }
 
@@ -116,15 +103,15 @@ public class AddContact extends RequestHandler {
         }
     }
 
-    private void setEmail(Contact contact, HttpServletRequest request, ArrayList<String> errors) {
-        String email = request.getParameter("email");
+    private void setTimeStamp(Contact contact, HttpServletRequest request, ArrayList<String> errors) {
+        String timeStamp = request.getParameter("dateTime");
         try {
-            contact.setEmail(email);
-            request.setAttribute("emailPreviousValue", email);
-            request.setAttribute("emailClass", "has-success");
+            contact.setTimeStampString(timeStamp);
+            request.setAttribute("dateTimePreviousValue", timeStamp);
+            request.setAttribute("dateTimeClass", "has-success");
         } catch (DomainException d) {
             errors.add(d.getMessage());
-            request.setAttribute("emailClass", "has-error");
+            request.setAttribute("dateTimeClass", "has-error");
         }
     }
 

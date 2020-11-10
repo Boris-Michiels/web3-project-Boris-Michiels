@@ -20,23 +20,11 @@
         <p>Are you sure you want to remove this contact? This action can not be undone.</p>
         <p>Contact name: ${contact.firstName} ${contact.lastName}</p>
         <p>Contact date: ${contact.dateString}</p>
-        <p>Contact hour: ${contact.hour}</p>
+        <p>Contact time: ${contact.timeString}</p>
 
         <form method="post" action="Controller?command=RemoveContact" novalidate>
             <p>
-                <input type="hidden" id="userid" name="userid" value="${contact.userid}">
-            </p>
-            <p>
-                <input type="hidden" id="firstName" name="firstName" value="${contact.firstName}">
-            </p>
-            <p>
-                <input type="hidden" id="lastName" name="lastName" value="${contact.lastName}">
-            </p>
-            <p>
-                <input type="hidden" id="date" name="date" value="${contact.dateStringJDBC}">
-            </p>
-            <p>
-                <input type="hidden" id="time" name="time" value="${contact.timeStringJDBC}">
+                <input type="hidden" id="contactid" name="contactid" value="${contact.contactid}">
             </p>
             <p>
                 <input type="submit" name="confirmation" id="noRemove" value="Don't remove">

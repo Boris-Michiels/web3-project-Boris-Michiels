@@ -12,12 +12,8 @@ public class RemoveContact extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String confirmation = request.getParameter("confirmation");
         if (!confirmation.isEmpty() && confirmation.equals("Remove")) {
-            String userid = request.getParameter("userid");
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
-            String date = request.getParameter("date");
-            String time = request.getParameter("time");
-            Contact contact = getService().getOneContact(userid, firstName, lastName, date, time);
+            int contactid = Integer.parseInt(request.getParameter("contactid"));
+            Contact contact = getService().getOneContact(contactid);
             getService().removeOneContact(contact);
             request.setAttribute("contactRemovedMessage", "Contact has been removed");
         }

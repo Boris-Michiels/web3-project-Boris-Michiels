@@ -13,9 +13,8 @@ public class Delete extends RequestHandler {
         if (!confirmation.isEmpty() && confirmation.equals("Delete")) {
             HttpSession session = request.getSession();
             Person person = (Person) session.getAttribute("person");
-            String userid = person.getUserid();
             getService().deletePerson(person);
-            getService().removeContacts(userid);
+            getService().removeContacts(person.getUserid());
             request.setAttribute("deleteMessage", "Your account has been removed!");
             return "Controller?command=LogOut";
         }

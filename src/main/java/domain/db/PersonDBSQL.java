@@ -20,17 +20,35 @@ public class PersonDBSQL implements PersonDB {
     @Override
     public void add(Person person) {
         if (person == null) throw new DbException("Person is null");
-        String sql = String.format("INSERT INTO %s.person (userid, email, password, firstname, lastname) VALUES (?, ?, ?, ?, ?)", this.schema);
+        String sql = String.format("INSERT INTO %s.person (userid, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
             statementSQL.setString(1, person.getUserid());
-            statementSQL.setString(2, person.getEmail());
-            statementSQL.setString(3, person.getPassword());
-            statementSQL.setString(4, person.getFirstName());
-            statementSQL.setString(5, person.getLastName());
+            statementSQL.setString(2, person.getFirstName());
+            statementSQL.setString(3, person.getLastName());
+            statementSQL.setString(4, person.getEmail());
+            statementSQL.setString(5, person.getPassword());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             if (e.getMessage().contains("duplicate key value")) throw new DbException("User already exists");
+            throw new DbException(e);
+        }
+    }
+
+    @Override
+    public void update(Person person) {
+        if (person == null) throw new DbException("Person is null");
+        String sql = String.format("UPDATE %s.person SET firstname = ?, lastname = ?, email = ?, password = ?, role = ? WHERE userid = ?", this.schema);
+        try {
+            PreparedStatement statementSQL = connection.prepareStatement(sql);
+            statementSQL.setString(1, person.getFirstName());
+            statementSQL.setString(2, person.getLastName());
+            statementSQL.setString(3, person.getEmail());
+            statementSQL.setString(4, person.getPassword());
+            statementSQL.setString(5, person.getRole());
+            statementSQL.setString(6, person.getUserid());
+            statementSQL.executeUpdate();
+        } catch (SQLException e) {
             throw new DbException(e);
         }
     }
@@ -67,23 +85,6 @@ public class PersonDBSQL implements PersonDB {
     }
 
     @Override
-    public void update(Person person) {
-        if (person == null) throw new DbException("Person is null");
-        String sql = String.format("UPDATE %s.person SET email = ?, password = ?, firstname = ?, lastname = ? WHERE userid = ?", this.schema);
-        try {
-            PreparedStatement statementSQL = connection.prepareStatement(sql);
-            statementSQL.setString(1, person.getEmail());
-            statementSQL.setString(2, person.getPassword());
-            statementSQL.setString(3, person.getFirstName());
-            statementSQL.setString(4, person.getLastName());
-            statementSQL.setString(5, person.getUserid());
-            statementSQL.executeUpdate();
-        } catch (SQLException e) {
-            throw new DbException(e);
-        }
-    }
-
-    @Override
     public void delete(Person person) {
         if (person == null) throw new DbException("No person given");
         String sql = String.format("DELETE FROM %s.person WHERE userid = ?", this.schema);
@@ -98,10 +99,11 @@ public class PersonDBSQL implements PersonDB {
 
     private Person createPerson(ResultSet result) throws SQLException {
         String userid = result.getString("userid");
-        String email = result.getString("email");
-        String hashedPassword = result.getString("password");
         String firstname = result.getString("firstname");
         String lastname = result.getString("lastname");
-        return new Person(userid, email, hashedPassword, firstname, lastname);
+        String email = result.getString("email");
+        String hashedPassword = result.getString("password");
+        String role = result.getString("role");
+        return new Person(userid, firstname, lastname, email, hashedPassword, role);
     }
 }

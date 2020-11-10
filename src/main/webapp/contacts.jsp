@@ -34,7 +34,7 @@
                         <td>${contact.dateString}</td>
                         <td>${contact.timeString}</td>
                         <td>${contact.firstName} ${contact.lastName}</td>
-                        <td><a href="Controller?command=RemoveContactConfirmation&userid=${contact.userid}&firstName=${contact.firstName}&lastName=${contact.lastName}&date=${contact.dateStringJDBC}&time=${contact.timeStringJDBC}">Remove</a></td>
+                        <td><a href="Controller?command=RemoveContactConfirmation&contactid=${contact.contactid}">Remove</a></td>
                     </tr>
                 </c:forEach>
                 <caption>Contacts Overview</caption>
@@ -63,20 +63,16 @@
                 <input class="form-group ${lastNameClass}" type="text" id="lastName" name="lastName" value="${lastNamePreviousValue}" required>
             </p>
             <p>
-                <label for="date">Date</label>
-                <input class="form-group ${dateClass}" type="date" id="date" name="date" value="${datePreviousValue}" required>
-            </p>
-            <p>
-                <label for="time">Hour</label>
-                <input class="form-group ${timeClass}" type="time" id="time" name="time" value="${timePreviousValue}" required>
+                <label for="email">Email</label>
+                <input class="form-group ${emailClass}" type="email" id="email" name="email" value="${emailPreviousValue}" required>
             </p>
             <p>
                 <label for="phoneNumber">Phone number</label>
                 <input class="form-group ${phoneNumberClass}" type="tel" id="phoneNumber" name="phoneNumber" value="${phoneNumberPreviousValue}" required>
             </p>
             <p>
-                <label for="email">Email</label>
-                <input class="form-group ${emailClass}" type="email" id="email" name="email" value="${emailPreviousValue}" required>
+                <label for="dateTime">Date and Time</label>
+                <input class="form-group ${dateTimeClass}" type="datetime-local" id="dateTime" name="dateTime" value="${dateTimePreviousValue}" required>
             </p>
             <p>
                 <input type="submit" id="add" value="Add">

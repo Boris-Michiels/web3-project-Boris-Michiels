@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface PersonDB {
     void add(Person person);
+    void update(Person person);
     List<Person> getAll();
     Person get(String userid);
-    void update(Person person);
     void delete(Person person);
 }
