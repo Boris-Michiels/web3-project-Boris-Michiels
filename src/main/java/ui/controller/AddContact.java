@@ -18,26 +18,24 @@ public class AddContact extends RequestHandler {
         Person person = (Person) session.getAttribute("person");
 
         if (person == null) throw new RuntimeException("You need to be logged in to add a contact");
-        else {
-            Contact contact = new Contact();
+        Contact contact = new Contact();
 
-            setUserid(person, contact, request, errors);
-            setFirstName(contact, request, errors);
-            setLastname(contact, request, errors);
-            setEmail(contact, request, errors);
-            setPhoneNumber(contact, request, errors);
-            setTimeStamp(contact, request, errors);
+        setUserid(person, contact, request, errors);
+        setFirstName(contact, request, errors);
+        setLastname(contact, request, errors);
+        setEmail(contact, request, errors);
+        setPhoneNumber(contact, request, errors);
+        setTimeStamp(contact, request, errors);
 
-            if (errors.size() == 0) {
-                try {
-                    getService().addContact(contact);
-                    removeAllAttributes(request);
-                } catch (DbException d) {
-                    errors.add(d.getMessage());
-                }
+        if (errors.size() == 0) {
+            try {
+                getService().addContact(contact);
+                removeAllAttributes(request);
+            } catch (DbException d) {
+                errors.add(d.getMessage());
             }
         }
-        if (errors.size() > 0) request.setAttribute("errors", errors);
+        request.setAttribute("errors", errors);
         return "Controller?command=Contacts";
     }
 

@@ -32,7 +32,7 @@ public class Register extends RequestHandler {
                 errors.add(d.getMessage());
             }
         }
-        if (errors.size() > 0) request.setAttribute("errors", errors);
+        request.setAttribute("errors", errors);
         return "Controller?command=Profile";
     }
 
