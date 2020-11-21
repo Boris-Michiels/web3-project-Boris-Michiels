@@ -6,6 +6,7 @@ import domain.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.List;
 public class Register extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        String destination = "Controller?command=Profile";
         ArrayList<String> errors = new ArrayList<>();
         Person person = new Person();
 
@@ -27,13 +27,15 @@ public class Register extends RequestHandler {
             try {
                 getService().addPerson(person);
                 removeAllAttributes(request);
-                destination = "Controller?command=Overview";
+                person = getService().getPerson(person.getUserid());
+                HttpSession session = request.getSession();
+                session.setAttribute("person", person);
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }
         }
         if (errors.size() > 0) request.setAttribute("errors", errors);
-        return destination;
+        return "Controller?command=Profile";
     }
 
     private void setUserid(Person person, HttpServletRequest request, ArrayList<String> errors) {
