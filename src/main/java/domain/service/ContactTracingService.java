@@ -64,8 +64,8 @@ public class ContactTracingService {
         getContactDBSQL().removeAll();
     }
 
-    public void removeOneContact(Contact contact) {
-        getContactDBSQL().removeOne(contact);
+    public void removeOneContact(int contactid) {
+        getContactDBSQL().removeOne(contactid);
     }
 
     private ContactDBSQL getContactDBSQL() {

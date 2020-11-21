@@ -11,5 +11,5 @@ public interface ContactDB {
     Contact getOne(int contactid);
     void removeAll();
     void remove(String userid);
-    void removeOne(Contact contact);
+    void removeOne(int contactid);
 }

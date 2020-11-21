@@ -109,12 +109,11 @@ public class ContactDBSQL implements ContactDB {
     }
 
     @Override
-    public void removeOne(Contact contact) {
-        if (contact == null) throw new DbException("No contact given");
+    public void removeOne(int contactid) {
         String sql = String.format("DELETE FROM %s.contact WHERE contactid = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
-            statementSQL.setInt(1, contact.getContactid());
+            statementSQL.setInt(1, contactid);
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e);

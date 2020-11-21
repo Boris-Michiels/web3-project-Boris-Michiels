@@ -10,11 +10,13 @@ import javax.servlet.http.HttpSession;
 public class ChangePassword extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Person person = (Person) session.getAttribute("person");
+
+        if (person == null) throw new RuntimeException("You need to be logged in to change your password");
         String newPassword = request.getParameter("newPassword");
 
         try {
-            HttpSession session = request.getSession();
-            Person person = (Person) session.getAttribute("person");
             person.setPassword(newPassword);
             getService().updatePerson(person);
             request.setAttribute("newPwMessage", "Your password has been updated");

@@ -13,6 +13,7 @@ public class LogIn extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String userid = request.getParameter("useridLogIn");
         String password = request.getParameter("passwordLogIn");
+
         try {
             Person person = getService().getPerson(userid);
             request.setAttribute("useridLogInPreviousValue", userid);
