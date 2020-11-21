@@ -18,7 +18,8 @@ public class Contacts extends RequestHandler {
             if (person.getRole().equals("admin")) contacts = getService().getAllContacts();
             else contacts = getService().getContacts(person.getUserid());
             request.setAttribute("contacts", contacts);
+            return "contacts.jsp";
         }
-        return "contacts.jsp";
+        throw new RuntimeException("You need to be logged in to view this page");
     }
 }

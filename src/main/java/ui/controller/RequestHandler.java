@@ -4,6 +4,8 @@ import domain.service.ContactTracingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class RequestHandler {
     protected ContactTracingService contactTracingService;
@@ -16,5 +18,10 @@ public abstract class RequestHandler {
 
     public ContactTracingService getService() {
         return this.contactTracingService;
+    }
+
+    protected static void removeAllAttributes(HttpServletRequest request) {
+        List<String> attributeNames = Collections.list(request.getAttributeNames());
+        for (String s : attributeNames) request.removeAttribute(s);
     }
 }

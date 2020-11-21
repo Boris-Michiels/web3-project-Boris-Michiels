@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Register extends RequestHandler {
     @Override
@@ -96,10 +94,5 @@ public class Register extends RequestHandler {
             errors.add(d.getMessage());
             request.setAttribute("passwordClass", "has-error");
         }
-    }
-
-    private void removeAllAttributes(HttpServletRequest request) {
-        List<String> attributeNames = Collections.list(request.getAttributeNames());
-        for (String s : attributeNames) request.removeAttribute(s);
     }
 }

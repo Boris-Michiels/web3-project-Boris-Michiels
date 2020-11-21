@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class AddContact extends RequestHandler {
     @Override
@@ -19,7 +17,7 @@ public class AddContact extends RequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
 
-        if (person == null) errors.add("You need to be logged in to add a contact");
+        if (person == null) throw new RuntimeException("You need to be logged in to add a contact");
         else {
             Contact contact = new Contact();
 
@@ -113,10 +111,5 @@ public class AddContact extends RequestHandler {
             errors.add(d.getMessage());
             request.setAttribute("dateTimeClass", "has-error");
         }
-    }
-
-    private void removeAllAttributes(HttpServletRequest request) {
-        List<String> attributeNames = Collections.list(request.getAttributeNames());
-        for (String s : attributeNames) request.removeAttribute(s);
     }
 }
