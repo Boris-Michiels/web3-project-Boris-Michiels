@@ -6,7 +6,9 @@
     <nav>
         <ul>
             <li ${param.title == 'Home' ? "id=actual" : ""}><a href="Controller?command=Home">Home</a></li>
-            <li ${param.title == 'User Overview' ? "id=actual" : ""}><a href="Controller?command=Overview">Overview</a></li>
+            <c:if test="${not empty person && person.role == 'admin'}">
+                <li ${param.title == 'User Overview' ? "id=actual" : ""}><a href="Controller?command=Overview">Overview</a></li>
+            </c:if>
             <c:if test="${not empty person}">
                 <li ${param.title == 'Contacts' ? "id=actual" : ""}><a href="Controller?command=Contacts">Contacts</a></li>
             </c:if>
