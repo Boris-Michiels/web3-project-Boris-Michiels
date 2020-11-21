@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class AddContact extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        ArrayList<String> errors = new ArrayList();
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
 
         if (person == null) throw new RuntimeException("You need to be logged in to add a contact");
+        ArrayList<String> errors = new ArrayList();
         Contact contact = new Contact();
 
         setUserid(person, contact, request, errors);
@@ -43,11 +43,8 @@ public class AddContact extends RequestHandler {
         String userid = person.getUserid();
         try {
             contact.setUserid(userid);
-            request.setAttribute("useridPreviousValue", userid);
-            request.setAttribute("useridClass", "has-success");
         } catch (DomainException d) {
             errors.add(d.getMessage());
-            request.setAttribute("useridClass", "has-error");
         }
     }
 

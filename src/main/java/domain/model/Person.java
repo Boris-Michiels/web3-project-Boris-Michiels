@@ -95,7 +95,7 @@ public class Person {
         }
     }
 
-    private void setRole(String role) {
+    public void setRole(String role) {
         if (role == null || role.trim().isEmpty()) throw new DomainException("Role is empty");
         this.role = role;
     }

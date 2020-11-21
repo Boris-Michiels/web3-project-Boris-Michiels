@@ -2,14 +2,18 @@ package domain.service;
 
 import domain.db.ContactDBSQL;
 import domain.db.PersonDBSQL;
+import domain.db.TestResultDBSQL;
 import domain.model.Contact;
 import domain.model.Person;
+import domain.model.TestResult;
 
 import java.util.List;
 
 public class ContactTracingService {
     private PersonDBSQL personDBSQL = new PersonDBSQL();
     private ContactDBSQL contactDBSQL = new ContactDBSQL();
+    private TestResultDBSQL testResultDBSQL = new TestResultDBSQL();
+
 
     public ContactTracingService() {
     }
@@ -70,5 +74,14 @@ public class ContactTracingService {
 
     private ContactDBSQL getContactDBSQL() {
         return contactDBSQL;
-    };
+    }
+
+
+    public void addTestResult(TestResult testResult) {
+        getTestResultDBSQL().add(testResult);
+    }
+
+    private TestResultDBSQL getTestResultDBSQL() {
+        return testResultDBSQL;
+    }
 }

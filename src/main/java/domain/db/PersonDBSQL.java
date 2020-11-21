@@ -20,7 +20,7 @@ public class PersonDBSQL implements PersonDB {
     @Override
     public void add(Person person) {
         if (person == null) throw new DbException("Person is null");
-        String sql = String.format("INSERT INTO %s.person (userid, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)", this.schema);
+        String sql = String.format("INSERT INTO %s.person (userid, firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, ?, ?)", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
             statementSQL.setString(1, person.getUserid());
@@ -28,6 +28,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(3, person.getLastName());
             statementSQL.setString(4, person.getEmail());
             statementSQL.setString(5, person.getPassword());
+            statementSQL.setString(6, person.getRole());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             if (e.getMessage().contains("duplicate key value")) throw new DbException("User already exists");

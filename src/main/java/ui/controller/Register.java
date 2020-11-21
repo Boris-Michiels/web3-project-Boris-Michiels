@@ -20,12 +20,12 @@ public class Register extends RequestHandler {
         setLastName(person, request, errors);
         setEmail(person, request, errors);
         setPassword(person, request, errors);
+        setRole(person, request, errors);
 
         if (errors.size() == 0) {
             try {
                 getService().addPerson(person);
                 removeAllAttributes(request);
-                person = getService().getPerson(person.getUserid());
                 HttpSession session = request.getSession();
                 session.setAttribute("person", person);
             } catch (DbException d) {
@@ -93,6 +93,14 @@ public class Register extends RequestHandler {
         } catch (DomainException d) {
             errors.add(d.getMessage());
             request.setAttribute("passwordClass", "has-error");
+        }
+    }
+
+    private void setRole(Person person, HttpServletRequest request, ArrayList<String> errors) {
+        try {
+            person.setRole("user");
+        } catch (DomainException d) {
+            errors.add(d.getMessage());
         }
     }
 }

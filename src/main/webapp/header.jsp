@@ -6,11 +6,12 @@
     <nav>
         <ul>
             <li ${param.title == 'Home' ? "id=actual" : ""}><a href="Controller?command=Home">Home</a></li>
-            <c:if test="${not empty person && person.role == 'admin'}">
-                <li ${param.title == 'User Overview' ? "id=actual" : ""}><a href="Controller?command=Overview">Overview</a></li>
-            </c:if>
             <c:if test="${not empty person}">
+                <c:if test="${person.role == 'admin'}">
+                    <li ${param.title == 'User Overview' ? "id=actual" : ""}><a href="Controller?command=Overview">Overview</a></li>
+                </c:if>
                 <li ${param.title == 'Contacts' ? "id=actual" : ""}><a href="Controller?command=Contacts">Contacts</a></li>
+                <li ${param.title == 'Register Test Result' ? "id=actual" : ""}><a href="Controller?command=RegisterTestResultPage">Register Test Result</a></li>
             </c:if>
             <li ${param.title == 'Profile' ? "id=actual" : ""}><a href="Controller?command=Profile">Profile</a></li>
         </ul>
