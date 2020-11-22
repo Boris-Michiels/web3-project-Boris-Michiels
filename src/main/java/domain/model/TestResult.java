@@ -28,12 +28,13 @@ public class TestResult {
 
     public void setDate(LocalDate date) {
         if (date == null) throw new DomainException("No date given");
+        if (date.isAfter(LocalDate.now())) throw new DomainException("The date you gave was in the future");
         this.date = date;
     }
 
     public void setDateString(String dateString) {
         if (dateString == null || dateString.trim().isEmpty()) throw new DomainException("No date given");
-        this.date = LocalDate.parse(dateString, dateFormatter);
+        setDate(LocalDate.parse(dateString, dateFormatter));
     }
 
     public LocalDate getDate() {

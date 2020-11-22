@@ -12,6 +12,7 @@
                 </c:if>
                 <li ${param.title == 'Contacts' ? "id=actual" : ""}><a href="Controller?command=Contacts">Contacts</a></li>
                 <li ${param.title == 'Register Test Result' ? "id=actual" : ""}><a href="Controller?command=RegisterTestResultPage">Register Test Result</a></li>
+                <li ${param.title == 'Search' ? "id=actual" : ""}><a href="Controller?command=SearchPage">Search</a></li>
             </c:if>
             <li ${param.title == 'Profile' ? "id=actual" : ""}><a href="Controller?command=Profile">Profile</a></li>
         </ul>

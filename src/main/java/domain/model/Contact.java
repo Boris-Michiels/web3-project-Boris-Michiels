@@ -90,12 +90,13 @@ public class Contact {
 
     public void setTimeStamp(LocalDateTime timeStamp) {
         if (timeStamp == null) throw new DomainException("No date and/or time given");
+        if (timeStamp.isAfter(LocalDateTime.now())) throw new DomainException("The date you gave was in the future");
         this.timeStamp = timeStamp;
     }
 
     public void setTimeStampString(String timeStampString) {
         if (timeStampString == null || timeStampString.trim().isEmpty()) throw new DomainException("No date and/or time given");
-        this.timeStamp = LocalDateTime.parse(timeStampString, dateTimeFormatter);
+        setTimeStamp(LocalDateTime.parse(timeStampString, dateTimeFormatter));
     }
 
     public LocalDateTime getTimeStamp() {

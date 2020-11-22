@@ -20,27 +20,33 @@
                 <p>${contactRemovedMessage}</p>
             </div>
         </c:if>
-        <c:if test="${not empty contacts}">
-            <h3>Contact overview</h3>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Hour</th>
-                    <th>Name</th>
-                    <th>Remove</th>
-                </tr>
-                <c:forEach var="contact" items="${contacts}">
+        <h3>Contact overview</h3>
+        <c:choose>
+            <c:when test="${empty contacts}">
+                <p>You haven't added any contacts yet.</p>
+                <br>
+            </c:when>
+            <c:otherwise>
+                <table>
                     <tr>
-                        <td>${contact.dateString}</td>
-                        <td>${contact.timeString}</td>
-                        <td>${contact.firstName} ${contact.lastName}</td>
-                        <td><a href="Controller?command=RemoveContactConfirmation&contactid=${contact.contactid}">Remove</a></td>
+                        <th>Date</th>
+                        <th>Hour</th>
+                        <th>Name</th>
+                        <th>Remove</th>
                     </tr>
-                </c:forEach>
-                <caption>Contacts Overview</caption>
-            </table>
-            <br>
-        </c:if>
+                    <c:forEach var="contact" items="${contacts}">
+                        <tr>
+                            <td>${contact.dateString}</td>
+                            <td>${contact.timeString}</td>
+                            <td>${contact.firstName} ${contact.lastName}</td>
+                            <td><a href="Controller?command=RemoveContactConfirmation&contactid=${contact.contactid}">Remove</a></td>
+                        </tr>
+                    </c:forEach>
+                    <caption>Contacts Overview</caption>
+                </table>
+                <br>
+            </c:otherwise>
+        </c:choose>
 
         <h3>Add a contact</h3>
         <c:if test="${not empty errors}">
