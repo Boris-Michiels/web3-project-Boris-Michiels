@@ -105,7 +105,7 @@
                     </p>
                 </form>
 
-                <form method="post" action="Controller?command=DeleteConfirmation" novalidate>
+                <form method="post" action="Controller?command=DeleteConfirmationPage" novalidate>
                     <p>
                         <input type="submit" id="deleteConfirmation" value="Delete account">
                     </p>

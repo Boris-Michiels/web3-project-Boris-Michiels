@@ -9,6 +9,6 @@ public class LogOut extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
-        return "Controller?command=Profile";
+        return "Controller?command=ProfilePage";
     }
 }

@@ -5,7 +5,7 @@ import domain.model.Contact;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RemoveContactConfirmation extends RequestHandler {
+public class RemoveContactConfirmationPage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         int contactid = Integer.parseInt(request.getParameter("contactid"));

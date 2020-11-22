@@ -20,6 +20,6 @@ public class RemoveContact extends RequestHandler {
             getService().removeOneContact(contactid);
             request.setAttribute("contactRemovedMessage", "Contact has been removed");
         }
-        return "Controller?command=Contacts";
+        return "Controller?command=ContactsPage";
     }
 }

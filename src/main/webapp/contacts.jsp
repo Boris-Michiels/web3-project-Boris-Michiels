@@ -39,7 +39,7 @@
                             <td>${contact.dateString}</td>
                             <td>${contact.timeString}</td>
                             <td>${contact.firstName} ${contact.lastName}</td>
-                            <td><a href="Controller?command=RemoveContactConfirmation&contactid=${contact.contactid}">Remove</a></td>
+                            <td><a href="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">Remove</a></td>
                         </tr>
                     </c:forEach>
                     <caption>Contacts Overview</caption>

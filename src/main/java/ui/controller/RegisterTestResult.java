@@ -28,7 +28,7 @@ public class RegisterTestResult extends RequestHandler {
             try {
                 getService().addTestResult(testResult);
                 removeAllAttributes(request);
-                destination = "Controller?command=Contacts";
+                destination = "Controller?command=ContactsPage";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }

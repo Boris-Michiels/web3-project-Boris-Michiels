@@ -23,6 +23,6 @@ public class ChangePassword extends RequestHandler {
         } catch (DomainException e) {
             request.setAttribute("newPwMessage", e.getMessage());
         }
-        return "Controller?command=Profile";
+        return "Controller?command=ProfilePage";
     }
 }

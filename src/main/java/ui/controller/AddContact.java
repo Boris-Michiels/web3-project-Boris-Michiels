@@ -36,7 +36,7 @@ public class AddContact extends RequestHandler {
             }
         }
         request.setAttribute("errors", errors);
-        return "Controller?command=Contacts";
+        return "Controller?command=ContactsPage";
     }
 
     private void setUserid(Person person, Contact contact, HttpServletRequest request, ArrayList<String> errors) {

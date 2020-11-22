@@ -33,7 +33,7 @@ public class Register extends RequestHandler {
             }
         }
         request.setAttribute("errors", errors);
-        return "Controller?command=Profile";
+        return "Controller?command=ProfilePage";
     }
 
     private void setUserid(Person person, HttpServletRequest request, ArrayList<String> errors) {

@@ -21,6 +21,6 @@ public class Delete extends RequestHandler {
             request.setAttribute("deleteMessage", "Your account has been removed!");
             return "Controller?command=LogOut";
         }
-        return "Controller?command=Profile";
+        return "Controller?command=ProfilePage";
     }
 }

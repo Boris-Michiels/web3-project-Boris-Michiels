@@ -3,9 +3,9 @@ package ui.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Profile extends RequestHandler {
+public class DeleteConfirmationPage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        return "profile.jsp";
+        return "deleteConfirmation.jsp";
     }
 }
