@@ -18,9 +18,9 @@
         <h3>Remove contact?</h3>
         <br>
         <p>Are you sure you want to remove this contact? This action can not be undone.</p>
-        <p>Contact name: ${contact.firstName} ${contact.lastName}</p>
-        <p>Contact date: ${contact.dateString}</p>
-        <p>Contact time: ${contact.timeString}</p>
+        <p>Contact name: <c:out value="${contact.firstName} ${contact.lastName}"/></p>
+        <p>Contact date: <c:out value="${contact.dateString}"/></p>
+        <p>Contact time: <c:out value="${contact.timeString}"/></p>
 
         <form method="post" action="Controller?command=RemoveContact" novalidate>
             <p>

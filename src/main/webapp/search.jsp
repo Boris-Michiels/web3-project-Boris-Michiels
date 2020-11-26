@@ -31,9 +31,9 @@
                     </tr>
                     <c:forEach var="contact" items="${contacts}">
                         <tr>
-                            <td>${contact.firstName} ${contact.lastName}</td>
-                            <td>${contact.phoneNumber}</td>
-                            <td>${contact.email}</td>
+                            <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
+                            <td><c:out value="${contact.phoneNumber}"/></td>
+                            <td><c:out value="${contact.email}"/></td>
                         </tr>
                     </c:forEach>
                     <caption>Contacts Overview</caption>

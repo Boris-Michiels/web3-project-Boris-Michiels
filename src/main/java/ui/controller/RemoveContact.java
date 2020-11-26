@@ -19,7 +19,7 @@ public class RemoveContact extends RequestHandler {
             int contactid = Integer.parseInt(request.getParameter("contactid"));
             getService().removeOneContact(contactid);
             //request.setAttribute("contactRemovedMessage", "Contact has been removed");
-            destination = "RedirectController?command=RemovedContactSucces";
+            destination = "RedirectController?command=RemoveContactSucces";
         }
         return destination;
     }

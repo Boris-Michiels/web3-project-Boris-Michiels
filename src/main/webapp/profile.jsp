@@ -33,7 +33,7 @@
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="useridLogIn">User id</label>
-                        <input type="text" id="useridLogin" name="useridLogIn" value="${useridLogInPreviousValue}" required>
+                        <input type="text" id="useridLogin" name="useridLogIn" value="${fn:escapeXml(useridLogInPreviousValue)}" required>
                     </p>
                     <p>
                         <label for="passwordLogIn">Password</label>
@@ -57,23 +57,23 @@
                 <form method="post" action="Controller?command=Register" novalidate>
                     <p>
                         <label for="userid">User id</label>
-                        <input class="form-group ${useridClass}" type="text" id="userid" name="userid" value="${useridPreviousValue}" required>
+                        <input class="form-group ${useridClass}" type="text" id="userid" name="userid" value="${fn:escapeXml(useridPreviousValue)}" required>
                     </p>
                     <p>
                         <label for="firstName">First Name</label>
-                        <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${firstNamePreviousValue}" required>
+                        <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${fn:escapeXml(firstNamePreviousValue)}" required>
                     </p>
                     <p>
                         <label for="lastName">Last Name</label>
-                        <input class="form-group ${lastNameClass}" type="text" id="lastName" name="lastName" value="${lastNamePreviousValue}" required>
+                        <input class="form-group ${lastNameClass}" type="text" id="lastName" name="lastName" value="${fn:escapeXml(lastNamePreviousValue)}" required>
                     </p>
                     <p>
                         <label for="email">Email</label>
-                        <input class="form-group ${emailClass}" type="email" id="email" name="email" value="${emailPreviousValue}" required>
+                        <input class="form-group ${emailClass}" type="email" id="email" name="email" value="${fn:escapeXml(emailPreviousValue)}" required>
                     </p>
                     <p>
                         <label for="password">Password</label>
-                        <input class="form-group ${passwordClass}" type="password" id="password" name="password" value="${passwordPreviousValue}" required>
+                        <input class="form-group ${passwordClass}" type="password" id="password" name="password" value="${fn:escapeXml(passwordPreviousValue)}" required>
                     </p>
                     <p>
                         <input type="submit" id="signUp" value="Sign Up">

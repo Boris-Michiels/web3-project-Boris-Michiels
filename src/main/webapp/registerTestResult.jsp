@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
         <form method="post" action="Controller?command=RegisterTestResult" novalidate>
             <p>
                 <label for="date">Date</label>
-                <input class="form-group ${dateClass}" type="date" id="date" name="date" value="${datePreviousValue}" required>
+                <input class="form-group ${dateClass}" type="date" id="date" name="date" value="${fn:escapeXml(datePreviousValue)}" required>
             </p>
             <p>
                 <input type="submit" id="add" value="Register Positive Test Result">

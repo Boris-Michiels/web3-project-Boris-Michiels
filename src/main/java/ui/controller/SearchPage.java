@@ -21,14 +21,14 @@ public class SearchPage extends RequestHandler {
         TestResult testResult = getService().getLatestTestResult(userid);
         contacts = getService().getContacts(userid);
         if (testResult == null) {
-            request.setAttribute("searchMessage", "You have not registered a test yet");
+            request.setAttribute("searchMessage", "You have not registered a positive test yet");
         } else if (!contacts.isEmpty()) {
             LocalDate testResultDate = testResult.getDate();
             contacts.removeIf(contact -> contact.getTimeStamp().toLocalDate().isBefore(testResultDate));
             request.setAttribute("contacts", contacts);
         }
         if (contacts.isEmpty() && testResult != null) {
-            request.setAttribute("searchMessage", "You haven't had any contacts after your last test");
+            request.setAttribute("searchMessage", "You haven't had any contacts since your last test");
         }
         return "search.jsp";
     }
