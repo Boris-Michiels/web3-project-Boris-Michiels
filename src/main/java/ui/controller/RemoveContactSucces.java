@@ -3,9 +3,10 @@ package ui.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ProfilePage extends RequestHandler {
+public class RemoveContactSucces extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        return "profile.jsp";
+        request.setAttribute("contactRemovedMessage", "Contact has been removed");
+        return "Controller?command=ContactsPage";
     }
 }

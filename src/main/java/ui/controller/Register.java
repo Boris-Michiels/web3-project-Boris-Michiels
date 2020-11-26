@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Register extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        String destination = "Controller?command=ProfilePage";
         ArrayList<String> errors = new ArrayList<>();
         Person person = new Person();
 
@@ -25,15 +26,15 @@ public class Register extends RequestHandler {
         if (errors.size() == 0) {
             try {
                 getService().addPerson(person);
-                removeAllAttributes(request);
                 HttpSession session = request.getSession();
                 session.setAttribute("person", person);
+                destination = "RedirectController?command=ProfilePage";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }
         }
         request.setAttribute("errors", errors);
-        return "Controller?command=ProfilePage";
+        return destination;
     }
 
     private void setUserid(Person person, HttpServletRequest request, ArrayList<String> errors) {

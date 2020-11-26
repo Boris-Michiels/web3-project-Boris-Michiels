@@ -15,7 +15,6 @@ public class SearchPage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-
         if (person == null) throw new RuntimeException("You need to be logged in to view this page");
         String userid = person.getUserid();
         List<Contact> contacts;

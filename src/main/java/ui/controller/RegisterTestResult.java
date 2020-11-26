@@ -16,7 +16,6 @@ public class RegisterTestResult extends RequestHandler {
         String destination = "Controller?command=RegisterTestResultPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-
         if (person == null) throw new RuntimeException("You need to be logged in to register a test result");
         ArrayList<String> errors = new ArrayList();
         TestResult testResult = new TestResult();
@@ -27,8 +26,7 @@ public class RegisterTestResult extends RequestHandler {
         if (errors.size() == 0) {
             try {
                 getService().addTestResult(testResult);
-                removeAllAttributes(request);
-                destination = "Controller?command=ContactsPage";
+                destination = "RedirectController?command=ContactsPage";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }

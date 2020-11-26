@@ -33,6 +33,9 @@ public class Controller extends HttpServlet {
                 System.out.println(exc);
             }
         }
-        request.getRequestDispatcher(destination).forward(request, response);
+        if (destination.startsWith("Redirect")) {
+            destination = destination.replaceFirst("Redirect", "");
+            response.sendRedirect(destination);
+        } else request.getRequestDispatcher(destination).forward(request, response);
     }
 }

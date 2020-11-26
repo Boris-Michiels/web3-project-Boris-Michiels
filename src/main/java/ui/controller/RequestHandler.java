@@ -19,9 +19,4 @@ public abstract class RequestHandler {
     public ContactTracingService getService() {
         return this.contactTracingService;
     }
-
-    protected static void removeAllAttributes(HttpServletRequest request) {
-        List<String> attributeNames = Collections.list(request.getAttributeNames());
-        for (String s : attributeNames) request.removeAttribute(s);
-    }
 }

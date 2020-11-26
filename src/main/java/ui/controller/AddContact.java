@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class AddContact extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        String destination = "Controller?command=ContactsPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-
         if (person == null) throw new RuntimeException("You need to be logged in to add a contact");
         ArrayList<String> errors = new ArrayList();
         Contact contact = new Contact();
@@ -30,13 +30,13 @@ public class AddContact extends RequestHandler {
         if (errors.size() == 0) {
             try {
                 getService().addContact(contact);
-                removeAllAttributes(request);
+                destination = "RedirectController?command=ContactsPage";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }
         }
         request.setAttribute("errors", errors);
-        return "Controller?command=ContactsPage";
+        return destination;
     }
 
     private void setUserid(Person person, Contact contact, HttpServletRequest request, ArrayList<String> errors) {
