@@ -13,7 +13,7 @@ public class Person {
     private String lastName;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
     public Person(String userid, String firstName, String lastName, String email, String hashedPassword, String role) {
         setUserid(userid);
@@ -21,7 +21,7 @@ public class Person {
         setLastName(lastName);
         setEmail(email);
         setHashedPassword(hashedPassword);
-        setRole(role);
+        setRoleString(role);
     }
 
     public Person() {
@@ -95,13 +95,21 @@ public class Person {
         }
     }
 
-    public void setRole(String role) {
-        if (role == null || role.trim().isEmpty()) throw new DomainException("Role is empty");
+    public void setRole(Role role) {
         this.role = role;
     }
 
-    public String getRole() {
+    public void setRoleString(String role) {
+        if (role == null || role.trim().isEmpty()) throw new DomainException("Role is empty");
+        this.role = Role.valueOf(role.toUpperCase());
+    }
+
+    public Role getRole() {
         return role;
+    }
+
+    public String getRoleString() {
+        return role.getStringValue();
     }
 
     @Override

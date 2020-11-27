@@ -28,7 +28,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(3, person.getLastName());
             statementSQL.setString(4, person.getEmail());
             statementSQL.setString(5, person.getPassword());
-            statementSQL.setString(6, person.getRole());
+            statementSQL.setString(6, person.getRoleString());
             statementSQL.executeUpdate();
         } catch (SQLException e) {
             if (e.getMessage().contains("duplicate key value")) throw new DbException("User already exists");
@@ -46,7 +46,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(2, person.getLastName());
             statementSQL.setString(3, person.getEmail());
             statementSQL.setString(4, person.getPassword());
-            statementSQL.setString(5, person.getRole());
+            statementSQL.setString(5, person.getRoleString());
             statementSQL.setString(6, person.getUserid());
             statementSQL.executeUpdate();
         } catch (SQLException e) {

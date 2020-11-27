@@ -15,6 +15,11 @@
     </jsp:include>
 
     <main>
+        <c:if test="${not empty notAuthorized}">
+            <div class="alert-danger">
+                <p>${notAuthorized}</p>
+            </div>
+        </c:if>
         <p>
             Sed ut perspiciatis unde omnis iste natus error sit
             voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque

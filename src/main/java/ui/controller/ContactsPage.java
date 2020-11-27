@@ -1,7 +1,6 @@
 package ui.controller;
 
-import domain.model.Contact;
-import domain.model.Person;
+import domain.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +10,13 @@ import java.util.List;
 public class ContactsPage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Utility.checkRole(request, authRoles);
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-        if (person == null) throw new RuntimeException("You need to be logged in to view this page");
         List<Contact> contacts;
 
-        if (person.getRole().equals("admin")) contacts = getService().getAllContacts();
+        if (person.getRole() == Role.ADMIN) contacts = getService().getAllContacts();
         else contacts = getService().getContacts(person.getUserid());
         request.setAttribute("contacts", contacts);
         return "contacts.jsp";

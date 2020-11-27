@@ -99,7 +99,7 @@ public class Register extends RequestHandler {
 
     private void setRole(Person person, HttpServletRequest request, ArrayList<String> errors) {
         try {
-            person.setRole("user");
+            person.setRoleString("user");
         } catch (DomainException d) {
             errors.add(d.getMessage());
         }

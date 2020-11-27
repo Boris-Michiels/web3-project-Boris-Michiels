@@ -1,9 +1,7 @@
 package ui.controller;
 
 import domain.db.DbException;
-import domain.model.Contact;
-import domain.model.DomainException;
-import domain.model.Person;
+import domain.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,10 +11,11 @@ import java.util.ArrayList;
 public class AddContact extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Utility.checkRole(request, authRoles);
         String destination = "Controller?command=ContactsPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-        if (person == null) throw new RuntimeException("You need to be logged in to add a contact");
         ArrayList<String> errors = new ArrayList();
         Contact contact = new Contact();
 

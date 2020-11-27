@@ -33,7 +33,7 @@
                 <form method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="useridLogIn">User id</label>
-                        <input type="text" id="useridLogin" name="useridLogIn" value="${fn:escapeXml(useridLogInPreviousValue)}" required>
+                        <input type="text" id="useridLogIn" name="useridLogIn" value="${fn:escapeXml(useridLogInPreviousValue)}" required>
                     </p>
                     <p>
                         <label for="passwordLogIn">Password</label>

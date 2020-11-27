@@ -1,6 +1,8 @@
 package ui.controller;
 
 import domain.model.Person;
+import domain.model.Role;
+import domain.model.Utility;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,10 +11,11 @@ import javax.servlet.http.HttpSession;
 public class Delete extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Utility.checkRole(request, authRoles);
         String destination = "RedirectController?command=ProfilePage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-        if (person == null) throw new RuntimeException("You need to be logged in to delete your account");
         String confirmation = request.getParameter("confirmation");
 
         if (!confirmation.isEmpty() && confirmation.equals("Delete")) {

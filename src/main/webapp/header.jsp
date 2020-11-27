@@ -7,7 +7,7 @@
         <ul>
             <li ${param.title == 'Home' ? "id=actual" : ""}><a href="Controller?command=HomePage">Home</a></li>
             <c:if test="${not empty person}">
-                <c:if test="${person.role == 'admin'}">
+                <c:if test="${person.role == 'ADMIN'}">
                     <li ${param.title == 'User Overview' ? "id=actual" : ""}><a href="Controller?command=OverviewPage">Overview</a></li>
                 </c:if>
                 <li ${param.title == 'Contacts' ? "id=actual" : ""}><a href="Controller?command=ContactsPage">Contacts</a></li>
