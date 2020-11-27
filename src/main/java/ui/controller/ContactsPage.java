@@ -14,10 +14,7 @@ public class ContactsPage extends RequestHandler {
         Utility.checkRole(request, authRoles);
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
-        List<Contact> contacts;
-
-        if (person.getRole() == Role.ADMIN) contacts = getService().getAllContacts();
-        else contacts = getService().getContacts(person.getUserid());
+        List<Contact> contacts = getService().getContacts(person.getUserid());
         request.setAttribute("contacts", contacts);
         return "contacts.jsp";
     }

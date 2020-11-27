@@ -35,6 +35,22 @@ public class TestResultDBSQL implements TestResultDB {
     }
 
     @Override
+    public List<TestResult> getAll() {
+        List<TestResult> testResults = new ArrayList<>();
+        String sql = String.format("SELECT * FROM %s.testresult", this.schema);
+        try {
+            PreparedStatement statementSQL = connection.prepareStatement(sql);
+            ResultSet result = statementSQL.executeQuery();
+            while (result.next()) {
+                testResults.add(createTestResult(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e);
+        }
+        return testResults;
+    }
+
+    @Override
     public List<TestResult> get(String userid) {
         if (userid == null || userid.isEmpty()) throw new DbException("No id given");
         List<TestResult> testResults = new ArrayList<>();

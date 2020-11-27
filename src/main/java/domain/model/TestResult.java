@@ -8,6 +8,7 @@ public class TestResult {
     private LocalDate date;
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter dateFormatterString = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public TestResult(String userid, LocalDate date) {
         setUserid(userid);
@@ -39,5 +40,9 @@ public class TestResult {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        return date.format(dateFormatterString);
     }
 }

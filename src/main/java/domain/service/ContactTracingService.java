@@ -77,6 +77,10 @@ public class ContactTracingService {
     }
 
 
+    public List<TestResult> getAllTestResults() {
+        return getTestResultDBSQL().getAll();
+    }
+
     public List<TestResult> getTestResults(String userid) {
         return getTestResultDBSQL().get(userid);
     }
