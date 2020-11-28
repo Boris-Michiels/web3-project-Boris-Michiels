@@ -85,6 +85,10 @@ public class ContactTracingService {
         return getTestResultDBSQL().get(userid);
     }
 
+    public TestResult getOneTestResult(int testResultid) {
+        return getTestResultDBSQL().getOne(testResultid);
+    }
+
     public TestResult getLatestTestResult(String userid) {
         return getTestResultDBSQL().getLatestTestResult(userid);
     }

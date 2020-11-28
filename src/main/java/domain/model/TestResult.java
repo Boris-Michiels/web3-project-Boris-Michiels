@@ -4,18 +4,28 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class TestResult {
+    private int testResultid;
     private String userid;
     private LocalDate date;
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final DateTimeFormatter dateFormatterString = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public TestResult(String userid, LocalDate date) {
+    public TestResult(int testResultid, String userid, LocalDate date) {
+        setTestResultid(testResultid);
         setUserid(userid);
         setDate(date);
     }
 
     public TestResult() {
+    }
+
+    private void setTestResultid(int testResultid) {
+        this.testResultid = testResultid;
+    }
+
+    public int getTestResultid() {
+        return testResultid;
     }
 
     public void setUserid(String userid) {

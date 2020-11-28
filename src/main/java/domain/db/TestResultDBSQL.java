@@ -69,6 +69,20 @@ public class TestResultDBSQL implements TestResultDB {
     }
 
     @Override
+    public TestResult getOne(int testResultid) {
+        String sql = String.format("SELECT * FROM %s.testresult WHERE testresultid = ?", this.schema);
+        try {
+            PreparedStatement statementSQL = connection.prepareStatement(sql);
+            statementSQL.setInt(1, testResultid);
+            ResultSet result = statementSQL.executeQuery();
+            if (result.next()) return createTestResult(result);
+            else throw new DbException("Test Result not found");
+        } catch (SQLException e) {
+            throw new DbException(e);
+        }
+    }
+
+    @Override
     public TestResult getLatestTestResult(String userid) {
         List<TestResult> testResults = get(userid);
         if (testResults.isEmpty()) return null;
@@ -77,8 +91,9 @@ public class TestResultDBSQL implements TestResultDB {
     }
 
     private TestResult createTestResult(ResultSet result) throws SQLException {
+        int testResultid = result.getInt("testresultid");
         String userid = result.getString("userid");
         LocalDate date = result.getDate("date").toLocalDate();
-        return new TestResult(userid, date);
+        return new TestResult(testResultid, userid, date);
     }
 }

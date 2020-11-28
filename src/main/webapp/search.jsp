@@ -15,32 +15,59 @@
     </jsp:include>
 
     <main>
-        <c:choose>
-            <c:when test="${empty contacts}">
-                <p>${searchMessage}</p>
-                <br>
-            </c:when>
-            <c:otherwise>
-                <h3>Contact the following people</h3>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>GSM</th>
-                        <th>Email</th>
-                        <th></th>
-                    </tr>
-                    <c:forEach var="contact" items="${contacts}">
+        <c:if test="${not empty testResultContactMessage or not empty testResultContacts}">
+            <h3>Contacts since test</h3>
+            <br>
+            <c:choose>
+                <c:when test="${not empty testResultContactMessage}">
+                    <p>${testResultContactMessage}</p>
+                </c:when>
+                <c:otherwise>
+                    <p>Test date: <c:out value="${testResult.dateString}"/></p>
+                    <table>
                         <tr>
-                            <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
-                            <td><c:out value="${contact.phoneNumber}"/></td>
-                            <td><c:out value="${contact.email}"/></td>
+                            <th>Name</th>
+                            <th>GSM</th>
+                            <th>Email</th>
+                            <th></th>
                         </tr>
-                    </c:forEach>
-                    <caption>Contacts Overview</caption>
-                </table>
-                <br>
-            </c:otherwise>
-        </c:choose>
+                        <c:forEach var="contact" items="${testResultContacts}">
+                            <tr>
+                                <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
+                                <td><c:out value="${contact.phoneNumber}"/></td>
+                                <td><c:out value="${contact.email}"/></td>
+                            </tr>
+                        </c:forEach>
+                        <caption>Contacts Overview</caption>
+                    </table>
+                </c:otherwise>
+            </c:choose>
+            <br>
+        </c:if>
+
+        <h3>Contacts since your latest positive test</h3>
+        <br>
+        <c:if test="${not empty searchMessage}">
+            <p>${searchMessage}</p>
+        </c:if>
+        <c:if test="${not empty latestContacts}">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>GSM</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+                <c:forEach var="contact" items="${latestContacts}">
+                    <tr>
+                        <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
+                        <td><c:out value="${contact.phoneNumber}"/></td>
+                        <td><c:out value="${contact.email}"/></td>
+                    </tr>
+                </c:forEach>
+                <caption>Contacts Overview</caption>
+            </table>
+        </c:if>
     </main>
 
     <jsp:include page="footer.jsp"/>

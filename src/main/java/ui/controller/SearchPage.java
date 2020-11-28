@@ -16,17 +16,17 @@ public class SearchPage extends RequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         String userid = person.getUserid();
-        List<Contact> contacts;
+        List<Contact> latestContacts;
         TestResult testResult = getService().getLatestTestResult(userid);
-        contacts = getService().getContacts(userid);
+        latestContacts = getService().getContacts(userid);
         if (testResult == null) {
             request.setAttribute("searchMessage", "You have not registered a positive test yet");
-        } else if (!contacts.isEmpty()) {
+        } else if (!latestContacts.isEmpty()) {
             LocalDate testResultDate = testResult.getDate();
-            contacts.removeIf(contact -> contact.getTimeStamp().toLocalDate().isBefore(testResultDate));
-            request.setAttribute("contacts", contacts);
+            latestContacts.removeIf(contact -> contact.getTimeStamp().toLocalDate().isBefore(testResultDate));
+            request.setAttribute("latestContacts", latestContacts);
         }
-        if (contacts.isEmpty() && testResult != null) {
+        if (latestContacts.isEmpty() && testResult != null) {
             request.setAttribute("searchMessage", "You haven't had any contacts since your last test");
         }
         return "search.jsp";
