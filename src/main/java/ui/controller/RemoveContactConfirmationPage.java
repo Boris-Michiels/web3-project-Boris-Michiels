@@ -1,26 +1,27 @@
 package ui.controller;
 
 import domain.db.DbException;
-import domain.model.Contact;
-import domain.model.Role;
-import domain.model.Utility;
+import domain.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class RemoveContactConfirmationPage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
-        String destination = "removeContactConfirmation.jsp";
+        String destination = "RedirectController?command=ContactsPage";
+        HttpSession session = request.getSession();
+        Person person = (Person) session.getAttribute("person");
         try {
             int contactid = Integer.parseInt(request.getParameter("contactid"));
             Contact contact = getService().getOneContact(contactid);
+            if (!contact.getUserid().equals(person.getUserid())) return destination;
             request.setAttribute("contact", contact);
-        } catch (NumberFormatException | DbException e) {
-            destination = "Controller?command=ContactsPage";
-        }
+            destination = "removeContactConfirmation.jsp";
+        } catch (NumberFormatException | DbException ignored) {}
         return destination;
     }
 }
