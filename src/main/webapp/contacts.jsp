@@ -40,7 +40,13 @@
                             <td><c:out value="${contact.dateString}"/></td>
                             <td><c:out value="${contact.timeString}"/></td>
                             <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
-                            <td><a href="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">Remove</a></td>
+                            <td>
+                                <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
+                                    <p>
+                                        <input type="submit" name="remove" id="remove" value="Remove">
+                                    </p>
+                                </form>
+                            </td>
                         </tr>
                     </c:forEach>
                     <caption>Contacts Overview</caption>

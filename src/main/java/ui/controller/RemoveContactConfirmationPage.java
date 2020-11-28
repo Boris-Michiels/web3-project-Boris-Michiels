@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.db.DbException;
 import domain.model.Contact;
 import domain.model.Role;
 import domain.model.Utility;
@@ -12,9 +13,14 @@ public class RemoveContactConfirmationPage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
-        int contactid = Integer.parseInt(request.getParameter("contactid"));
-        Contact contact = getService().getOneContact(contactid);
-        request.setAttribute("contact", contact);
-        return "removeContactConfirmation.jsp";
+        String destination = "removeContactConfirmation.jsp";
+        try {
+            int contactid = Integer.parseInt(request.getParameter("contactid"));
+            Contact contact = getService().getOneContact(contactid);
+            request.setAttribute("contact", contact);
+        } catch (NumberFormatException | DbException e) {
+            destination = "Controller?command=ContactsPage";
+        }
+        return destination;
     }
 }
