@@ -25,7 +25,7 @@ public class RegisterTestResult extends RequestHandler {
         if (errors.size() == 0) {
             try {
                 getService().addTestResult(testResult);
-                destination = "RedirectController?command=ContactsPage";
+                destination = "RedirectController?command=TestResultPage";
             } catch (DbException d) {
                 errors.add(d.getMessage());
             }
@@ -47,7 +47,6 @@ public class RegisterTestResult extends RequestHandler {
         String date = request.getParameter("date");
         try {
             testResult.setDateString(date);
-            request.setAttribute("datePreviousValue", date);
             request.setAttribute("dateClass", "has-success");
         } catch (DomainException d) {
             errors.add(d.getMessage());

@@ -30,7 +30,7 @@
         <form method="post" action="Controller?command=RegisterTestResult" novalidate>
             <p>
                 <label for="date">Date</label>
-                <input class="form-group ${dateClass}" type="date" id="date" name="date" value="${fn:escapeXml(datePreviousValue)}" required>
+                <input class="form-group ${dateClass}" type="date" id="date" name="date" required>
             </p>
             <p>
                 <input type="submit" id="add" value="Register Positive Test Result">

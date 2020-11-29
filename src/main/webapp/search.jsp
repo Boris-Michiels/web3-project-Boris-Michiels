@@ -24,12 +24,11 @@
                 </c:when>
                 <c:otherwise>
                     <p>Test date: <c:out value="${testResult.dateString}"/></p>
-                    <table>
+                    <table id="testResultContacts">
                         <tr>
                             <th>Name</th>
                             <th>GSM</th>
                             <th>Email</th>
-                            <th></th>
                         </tr>
                         <c:forEach var="contact" items="${testResultContacts}">
                             <tr>
@@ -51,12 +50,11 @@
             <p>${searchMessage}</p>
         </c:if>
         <c:if test="${not empty latestContacts}">
-            <table>
+            <table id="latestContacts">
                 <tr>
                     <th>Name</th>
                     <th>GSM</th>
                     <th>Email</th>
-                    <th></th>
                 </tr>
                 <c:forEach var="contact" items="${latestContacts}">
                     <tr>
