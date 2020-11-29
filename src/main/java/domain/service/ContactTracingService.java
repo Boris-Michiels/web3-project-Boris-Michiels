@@ -97,6 +97,10 @@ public class ContactTracingService {
         getTestResultDBSQL().add(testResult);
     }
 
+    public void removeTestResults(String userid) {
+        getTestResultDBSQL().remove(userid);
+    }
+
     private TestResultDBSQL getTestResultDBSQL() {
         return testResultDBSQL;
     }

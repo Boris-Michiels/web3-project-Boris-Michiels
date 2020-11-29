@@ -21,6 +21,7 @@ public class Delete extends RequestHandler {
         if (!confirmation.isEmpty() && confirmation.equals("Delete")) {
             getService().deletePerson(person);
             getService().removeContacts(person.getUserid());
+            getService().removeTestResults(person.getUserid());
             session.invalidate();
             //request.setAttribute("deleteMessage", "Your account has been removed");
             destination =  "RedirectController?command=DeleteSucces";

@@ -10,4 +10,5 @@ public interface TestResultDB {
     List<TestResult> get(String userid);
     TestResult getOne(int testResultid);
     TestResult getLatestTestResult(String userid);
+    void remove(String userid);
 }

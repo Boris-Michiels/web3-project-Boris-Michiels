@@ -90,6 +90,18 @@ public class TestResultDBSQL implements TestResultDB {
         return latestTestResult;
     }
 
+    @Override
+    public void remove(String userid) {
+        String sql = String.format("DELETE FROM %s.testresult WHERE userid = ?", this.schema);
+        try {
+            PreparedStatement statementSQL = connection.prepareStatement(sql);
+            statementSQL.setString(1, userid);
+            statementSQL.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException(e);
+        }
+    }
+
     private TestResult createTestResult(ResultSet result) throws SQLException {
         int testResultid = result.getInt("testresultid");
         String userid = result.getString("userid");
