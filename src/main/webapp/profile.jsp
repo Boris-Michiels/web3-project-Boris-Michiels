@@ -76,7 +76,7 @@
                         <input class="form-group ${passwordClass}" type="password" id="password" name="password" value="${fn:escapeXml(passwordPreviousValue)}" required>
                     </p>
                     <p>
-                        <input type="submit" id="signUp" value="Sign Up">
+                        <input type="submit" id="register" value="Register">
                     </p>
                 </form>
             </c:when>
