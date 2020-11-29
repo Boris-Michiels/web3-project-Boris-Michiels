@@ -13,13 +13,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RegisterTest {
 	private WebDriver driver;
-	private String path = "http://localhost:8080/Controller";
+	private String path = "http://localhost:8080/Controller?command=";
 
 	@Before
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\boris\\Documents\\Programs\\Selenium\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get(path+"?command=Register");
+		driver.get(path + "ProfilePage");
 	}
 
 	@After
@@ -33,18 +33,17 @@ public class RegisterTest {
 		submitForm(useridRandom, "Jan", "Janssens", "jan.janssens@hotmail.com" , "1234");
 		
 		String title = driver.getTitle();
-		assertEquals("Home",title);
+		assertEquals("Profile", title);
 		
-		driver.get(path+"?command=Overview");
-		
-		ArrayList<WebElement> listItems=(ArrayList<WebElement>) driver.findElements(By.cssSelector("table tr"));
+		ArrayList<WebElement> listItems = (ArrayList<WebElement>) driver.findElements(By.cssSelector("h3"));
 		boolean found=false;
 		for (WebElement listItem:listItems) {
-				if (listItem.getText().contains("jan.janssens@hotmail.com") &&  listItem.getText().contains(" Jan Janssens")) {
+				if (listItem.getText().contains("Jan Janssens")) {
 				    found=true;
 			}
 		}
 		assertTrue(found);
+		deleteAccount();
 	}
 	
 	@Test
@@ -52,7 +51,7 @@ public class RegisterTest {
 		submitForm("", "Jan", "Janssens", "jan.janssens@hotmail.com", "1234");
 		
 		String title = driver.getTitle();
-		assertEquals("Sign Up",title);
+		assertEquals("Profile", title);
 		
 		WebElement errorMsg = driver.findElement(By.cssSelector("div.alert-danger ul li"));
 		assertEquals("No userid given", errorMsg.getText());
@@ -75,8 +74,8 @@ public class RegisterTest {
 		submitForm("jakke", "", "Janssens", "jan.janssens@hotmail.com", "1234");
 		
 		String title = driver.getTitle();
-		assertEquals("Sign Up",title);
-		
+		assertEquals("Profile", title);
+
 		WebElement errorMsg = driver.findElement(By.cssSelector("div.alert-danger ul li"));
 		assertEquals("No firstname given", errorMsg.getText());
 
@@ -98,7 +97,7 @@ public class RegisterTest {
 		submitForm("jakke", "Jan", "", "jan.janssens@hotmail.com", "1234");
 		
 		String title = driver.getTitle();
-		assertEquals("Sign Up",title);
+		assertEquals("Profile", title);
 		
 		WebElement errorMsg = driver.findElement(By.cssSelector("div.alert-danger ul li"));
 		assertEquals("No last name given", errorMsg.getText());
@@ -121,7 +120,7 @@ public class RegisterTest {
 		submitForm("jakke", "Jan", "Janssens", "", "1234");
 		
 		String title = driver.getTitle();
-		assertEquals("Sign Up",title);
+		assertEquals("Profile", title);
 
 		WebElement errorMsg = driver.findElement(By.cssSelector("div.alert-danger ul li"));
 		assertEquals("No email given", errorMsg.getText());
@@ -144,7 +143,7 @@ public class RegisterTest {
 		submitForm("jakke", "Jan", "Janssens", "jan.janssens@hotmail.com", "");
 		
 		String title = driver.getTitle();
-		assertEquals("Sign Up",title);
+		assertEquals("Profile", title);
 		
 		WebElement errorMsg = driver.findElement(By.cssSelector("div.alert-danger ul li"));
 		assertEquals("No password given", errorMsg.getText());
@@ -166,8 +165,9 @@ public class RegisterTest {
 	public void test_Register_UserAlreadyExists_ErrorMessageGiven(){
 		String useridRandom = generateRandomUseridInOrderToRunTestMoreThanOnce("pierke");
 		submitForm(useridRandom, "Pieter", "Pieters", "pieter.pieters@hotmail.com", "1234");
-		
-		driver.get(path+"?command=Register");
+
+		logOut();
+		driver.get(path + "ProfilePage");
 
 		submitForm(useridRandom, "Pieter", "Pieters", "pieter.pieters@hotmail.com", "1234");
 		
@@ -185,10 +185,13 @@ public class RegisterTest {
 		
 		WebElement fieldEmail=driver.findElement(By.id("email"));
 		assertEquals("pieter.pieters@hotmail.com",fieldEmail.getAttribute("value"));
+
+		logIn(useridRandom, "1234");
+		deleteAccount();
 	}
 
 	private String generateRandomUseridInOrderToRunTestMoreThanOnce(String component) {
-		int random = (int)(Math.random() * 1000 + 1);
+		int random = (int) (Math.random() * 1000 + 1);
 		return random+component;
 	}
 
@@ -198,6 +201,20 @@ public class RegisterTest {
 		field.sendKeys(value);
 	}
 
+	private void logIn(String userid, String password) {
+		driver.get(path + "LogOut");
+		driver.get(path + "ProfilePage");
+
+		fillOutField("useridLogIn", userid);
+		fillOutField("passwordLogIn", password);
+
+		driver.findElement(By.id("logIn")).click();
+	}
+
+	private void logOut() {
+		driver.get(path + "LogOut");
+	}
+
 	private void submitForm(String userid, String firstName,String lastName, String email, String password) {
 		fillOutField("userid", userid);
 		fillOutField("firstName", firstName);
@@ -205,7 +222,13 @@ public class RegisterTest {
 		fillOutField("email", email);
 		fillOutField("password", password);
 
-		WebElement button=driver.findElement(By.id("signUp"));
+		WebElement button = driver.findElement(By.id("register"));
 		button.click();
+	}
+
+	private void deleteAccount() {
+		driver.get(path + "ProfilePage");
+		driver.findElement(By.id("deleteConfirmation")).click();
+		driver.findElement(By.id("delete")).click();
 	}
 }

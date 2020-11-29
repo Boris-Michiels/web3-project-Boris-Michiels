@@ -25,9 +25,7 @@ public class TestResultSearchTest {
 
     @After
     public void clean() {
-        driver.get(path + "ProfilePage");
-        driver.findElement(By.id("deleteConfirmation")).click();
-        driver.findElement(By.id("delete")).click();
+        deleteAccount();
         driver.quit();
     }
 
@@ -181,6 +179,12 @@ public class TestResultSearchTest {
         driver.findElement(By.id("logIn")).click();
     }
 
+    private void deleteAccount() {
+        driver.get(path + "ProfilePage");
+        driver.findElement(By.id("deleteConfirmation")).click();
+        driver.findElement(By.id("delete")).click();
+    }
+
     private void fillOutField(String name, String value) {
         WebElement field = driver.findElement(By.id(name));
         field.clear();
@@ -188,7 +192,6 @@ public class TestResultSearchTest {
     }
 
     private boolean elementContainsText (List<WebElement> elements, String text) {
-        int tests = 0;
         for (WebElement e : elements) {
             if (e.getText().contains(text)) {
                 return true;
