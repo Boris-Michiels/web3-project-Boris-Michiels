@@ -32,26 +32,31 @@
             <caption>Users Overview</caption>
         </table>
         <br>
+
         <h3>Contacts Overview</h3>
         <c:choose>
             <c:when test="${empty contacts}">
                 <p>There have been no contacts yet.</p>
-                <br>
             </c:when>
             <c:otherwise>
                 <table>
                     <tr>
-                        <th>Added by</th>
-                        <th>Date</th>
-                        <th>Hour</th>
+                        <th colspan="2">Added by</th>
+                        <th rowspan="2">Date</th>
+                        <th rowspan="2">Hour</th>
+                        <th rowspan="2">Name</th>
+                    </tr>
+                    <tr>
+                        <th>UserId</th>
                         <th>Name</th>
                     </tr>
                     <c:forEach var="contact" items="${contacts}">
                         <tr>
                             <td><c:out value="${contact.userid}"/></td>
+                            <td><c:out value="${personMap[contact.userid].fullName}"/></td>
                             <td><c:out value="${contact.dateString}"/></td>
                             <td><c:out value="${contact.timeString}"/></td>
-                            <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
+                            <td><c:out value="${contact.fullName}"/></td>
                         </tr>
                     </c:forEach>
                     <caption>Contacts Overview</caption>
@@ -60,21 +65,26 @@
             </c:otherwise>
         </c:choose>
         <br>
+
         <h3>Test Result Overview</h3>
         <c:choose>
             <c:when test="${empty testResults}">
                 <p>There have been no positive tests registered yet.</p>
-                <br>
             </c:when>
             <c:otherwise>
                 <table>
                     <tr>
-                        <th>Added by</th>
-                        <th>Date</th>
+                        <th colspan="2">Added by</th>
+                        <th rowspan="2">Date</th>
+                    </tr>
+                    <tr>
+                        <th>UserId</th>
+                        <th>Name</th>
                     </tr>
                     <c:forEach var="testResult" items="${testResults}">
                         <tr>
                             <td><c:out value="${testResult.userid}"/></td>
+                            <td><c:out value="${personMap[testResult.userid].fullName}"/></td>
                             <td><c:out value="${testResult.dateString}"/></td>
                         </tr>
                     </c:forEach>
