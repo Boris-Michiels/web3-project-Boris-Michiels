@@ -118,7 +118,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName() + ": " + getUserid() + ", " + getEmail();
+        return getFullName() + ": " + getUserid() + ", " + getEmail();
     }
 
     private String hashPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
