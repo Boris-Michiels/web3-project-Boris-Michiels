@@ -41,22 +41,21 @@
             <c:otherwise>
                 <table>
                     <tr>
-                        <th colspan="2">Added by</th>
-                        <th rowspan="2">Date</th>
-                        <th rowspan="2">Hour</th>
-                        <th rowspan="2">Name</th>
-                    </tr>
-                    <tr>
-                        <th>UserId</th>
-                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Hour</th>
+                        <th>User Name</th>
+                        <th>Contact Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                     </tr>
                     <c:forEach var="contact" items="${contacts}">
                         <tr>
-                            <td><c:out value="${contact.userid}"/></td>
-                            <td><c:out value="${personMap[contact.userid].fullName}"/></td>
                             <td><c:out value="${contact.dateString}"/></td>
                             <td><c:out value="${contact.timeString}"/></td>
+                            <td><c:out value="${personMap[contact.userid].fullName}"/></td>
                             <td><c:out value="${contact.fullName}"/></td>
+                            <td><c:out value="${contact.email}"/></td>
+                            <td><c:out value="${contact.phoneNumber}"/></td>
                         </tr>
                     </c:forEach>
                     <caption>Contacts Overview</caption>
@@ -74,16 +73,11 @@
             <c:otherwise>
                 <table>
                     <tr>
-                        <th colspan="2">Added by</th>
-                        <th rowspan="2">Date</th>
-                    </tr>
-                    <tr>
-                        <th>UserId</th>
-                        <th>Name</th>
+                        <th>User Name</th>
+                        <th>Date</th>
                     </tr>
                     <c:forEach var="testResult" items="${testResults}">
                         <tr>
-                            <td><c:out value="${testResult.userid}"/></td>
                             <td><c:out value="${personMap[testResult.userid].fullName}"/></td>
                             <td><c:out value="${testResult.dateString}"/></td>
                         </tr>

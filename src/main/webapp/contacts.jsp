@@ -33,13 +33,17 @@
                         <th>Date</th>
                         <th>Hour</th>
                         <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Remove</th>
                     </tr>
                     <c:forEach var="contact" items="${contacts}">
                         <tr>
                             <td><c:out value="${contact.dateString}"/></td>
                             <td><c:out value="${contact.timeString}"/></td>
-                            <td><c:out value="${contact.firstName} ${contact.lastName}"/></td>
+                            <td><c:out value="${contact.fullName}"/></td>
+                            <td><c:out value="${contact.email}"/></td>
+                            <td><c:out value="${contact.phoneNumber}"/></td>
                             <td>
                                 <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
                                     <p>
