@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="scripts/ContactsTableSort.js" defer></script>
 </head>
 <body>
 <div id="container">
@@ -39,7 +40,7 @@
                 <p>There have been no contacts yet.</p>
             </c:when>
             <c:otherwise>
-                <table>
+                <table id="contactsTable">
                     <tr>
                         <th>Date</th>
                         <th>Hour</th>
