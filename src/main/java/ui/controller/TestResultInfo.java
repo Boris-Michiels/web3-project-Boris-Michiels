@@ -14,11 +14,13 @@ public class TestResultInfo extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         String destination = "RedirectController?command=TestResultPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         String userid = person.getUserid();
         List<Contact> testResultContacts = getService().getContacts(userid);
+
         try {
             int testResultid = Integer.parseInt(request.getParameter("testResultid"));
             TestResult testResult = getService().getOneTestResult(testResultid);

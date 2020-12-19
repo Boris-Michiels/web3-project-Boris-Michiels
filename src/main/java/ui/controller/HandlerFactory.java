@@ -4,7 +4,8 @@ import domain.service.ContactTracingService;
 
 public class HandlerFactory {
     public RequestHandler getHandler(String handlerName, ContactTracingService model) {
-        RequestHandler handler = null;
+        RequestHandler handler;
+
         try {
             Class handlerClass = Class.forName("ui.controller." + handlerName);
             Object handlerObject = handlerClass.getConstructor().newInstance();

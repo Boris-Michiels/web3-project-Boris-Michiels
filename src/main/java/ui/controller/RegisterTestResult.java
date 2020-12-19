@@ -13,6 +13,7 @@ public class RegisterTestResult extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         String destination = "Controller?command=TestResultPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");

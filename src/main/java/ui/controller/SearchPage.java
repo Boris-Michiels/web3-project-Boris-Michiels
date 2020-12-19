@@ -13,12 +13,13 @@ public class SearchPage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         String userid = person.getUserid();
-        List<Contact> latestContacts;
+        List<Contact> latestContacts = getService().getContacts(userid);
         TestResult testResult = getService().getLatestTestResult(userid);
-        latestContacts = getService().getContacts(userid);
+
         if (testResult == null) {
             request.setAttribute("searchMessage", "You have not registered a positive test yet");
         } else if (!latestContacts.isEmpty()) {

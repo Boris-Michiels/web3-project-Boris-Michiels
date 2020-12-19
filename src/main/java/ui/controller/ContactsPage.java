@@ -12,9 +12,11 @@ public class ContactsPage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         List<Contact> contacts = getService().getContacts(person.getUserid());
+
         request.setAttribute("contacts", contacts);
         return "contacts.jsp";
     }

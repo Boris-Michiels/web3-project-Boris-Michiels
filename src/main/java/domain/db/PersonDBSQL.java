@@ -79,7 +79,7 @@ public class PersonDBSQL implements PersonDB {
             statementSQL.setString(1, userid);
             ResultSet result = statementSQL.executeQuery();
             if (result.next()) return createPerson(result);
-            else throw new DbException("Userid not found");
+            else throw new DbException("No valid userid/password");
         } catch (SQLException e) {
             throw new DbException(e);
         }

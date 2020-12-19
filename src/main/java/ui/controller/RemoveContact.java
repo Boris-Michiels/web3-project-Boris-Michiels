@@ -12,6 +12,7 @@ public class RemoveContact extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         String destination = "RedirectController?command=ContactsPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
@@ -23,7 +24,6 @@ public class RemoveContact extends RequestHandler {
                 Contact contact = getService().getOneContact(contactid);
                 if (!contact.getUserid().equals(person.getUserid())) return destination;
                 getService().removeOneContact(contactid);
-                //request.setAttribute("contactRemovedMessage", "Contact has been removed");
                 destination = "RedirectController?command=RemoveContactSucces";
             } catch (NumberFormatException | DbException ignored) {}
         }

@@ -14,10 +14,12 @@ public class AdminPage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN};
         Utility.checkRole(request, authRoles);
+
         List<Person> persons = getService().getAllPersons();
         List<Contact> contacts = getService().getAllContacts();
         List<TestResult> testResults = getService().getAllTestResults();
         Map<String, Person> personMap = persons.stream().collect(Collectors.toMap(Person::getUserid, Function.identity()));
+
         request.setAttribute("persons", persons);
         request.setAttribute("contacts", contacts);
         request.setAttribute("testResults", testResults);

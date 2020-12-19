@@ -11,6 +11,7 @@ public class RemoveContactSucces extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         request.setAttribute("contactRemovedMessage", "Contact has been removed");
         return "Controller?command=ContactsPage";
     }

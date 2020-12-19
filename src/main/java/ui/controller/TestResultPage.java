@@ -15,9 +15,11 @@ public class TestResultPage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.ADMIN, Role.USER};
         Utility.checkRole(request, authRoles);
+
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         List<TestResult> testResults = getService().getTestResults(person.getUserid());
+
         request.setAttribute("testResults", testResults);
         return "testResult.jsp";
     }
