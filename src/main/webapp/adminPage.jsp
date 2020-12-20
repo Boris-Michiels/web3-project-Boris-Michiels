@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="scripts/ContactsTableSort.js" defer></script>
+    <script src="scripts/Script.js" defer></script>
 </head>
 <body>
 <div id="container">
@@ -40,6 +40,12 @@
                 <p>There have been no contacts yet.</p>
             </c:when>
             <c:otherwise>
+                <label for="fromContact">From:</label>
+                <input type="datetime-local" id="fromContact" onchange="filterContactsTable()">
+                <label for="untilContact">Until:</label>
+                <input type="datetime-local" id="untilContact" onchange="filterContactsTable()">
+                <button onclick="clearContactsFilter()">Clear</button>
+
                 <table id="contactsTable">
                     <tr>
                         <th>Date</th>
