@@ -90,7 +90,7 @@ form {
     margin: 30px 0;
 }
 
-td > form, td > form input[type="submit"] {
+td > form, td > form input[type="submit"], button {
 	margin: 0;
 }
 
@@ -117,7 +117,7 @@ td > form, td > form input[type="submit"] {
 label,input,textarea {
     margin-bottom: 16px;
 }
-input,textarea {
+input,textarea, button {
     border: 1px solid #888;
     margin: 2px 0 16px 0;
     outline: 0 none;
@@ -196,7 +196,7 @@ input {
 	    .alert-danger, .alert-success {
         width: 614px;
     }
-    label,input,textarea {
+    label,input,textarea, button {
         display: inline-block; 
     }
     label {
@@ -207,7 +207,7 @@ input {
     input[type="text"], input[type="email"], input[type="password"], textarea{
         width: 400px;
     }
-    input[type="submit"] {
+    input[type="submit"], button {
         margin-left: 112px;
     }
     textarea {
