@@ -76,6 +76,12 @@ th,td {
 	vertical-align: top;
 }
 
+table {
+	display: block;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
 table caption {
 	display: none;
 }
