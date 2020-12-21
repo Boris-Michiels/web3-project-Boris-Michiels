@@ -54,6 +54,7 @@
                         <th>Contact Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Remove</th>
                     </tr>
                     <c:forEach var="contact" items="${contacts}">
                         <tr>
@@ -63,6 +64,13 @@
                             <td><c:out value="${contact.fullName}"/></td>
                             <td><c:out value="${contact.email}"/></td>
                             <td><c:out value="${contact.phoneNumber}"/></td>
+                            <td>
+                                <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
+                                    <p>
+                                        <input type="submit" name="remove" id="remove" value="Remove">
+                                    </p>
+                                </form>
+                            </td>
                         </tr>
                     </c:forEach>
                     <caption>Contacts Overview</caption>

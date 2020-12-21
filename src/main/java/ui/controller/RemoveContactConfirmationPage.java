@@ -20,7 +20,10 @@ public class RemoveContactConfirmationPage extends RequestHandler {
         try {
             int contactid = Integer.parseInt(request.getParameter("contactid"));
             Contact contact = getService().getOneContact(contactid);
-            if (!contact.getUserid().equals(person.getUserid())) return destination;
+            if (!contact.getUserid().equals(person.getUserid())) {
+                authRoles = new Role[] {Role.ADMIN};
+                Utility.checkRole(request, authRoles);
+            }
             request.setAttribute("contact", contact);
             destination = "removeContactConfirmation.jsp";
         } catch (NumberFormatException | DbException ignored) {}

@@ -18,11 +18,14 @@ public class RemoveContact extends RequestHandler {
         Person person = (Person) session.getAttribute("person");
         String confirmation = request.getParameter("confirmation");
 
-        if (!confirmation.isEmpty() && confirmation.equals("Remove")) {
+        if (confirmation != null && confirmation.equals("Remove")) {
             try {
                 int contactid = Integer.parseInt(request.getParameter("contactid"));
                 Contact contact = getService().getOneContact(contactid);
-                if (!contact.getUserid().equals(person.getUserid())) return destination;
+                if (!contact.getUserid().equals(person.getUserid())) {
+                    authRoles = new Role[] {Role.ADMIN};
+                    Utility.checkRole(request, authRoles);
+                }
                 getService().removeOneContact(contactid);
                 destination = "RedirectController?command=RemoveContactSucces";
             } catch (NumberFormatException | DbException ignored) {}

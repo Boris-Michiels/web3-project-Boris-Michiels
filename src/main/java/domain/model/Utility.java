@@ -10,6 +10,6 @@ public class Utility {
         for (Role authRole : roles) {
             if (role == authRole) return;
         }
-        throw new NotAuthorizedException("You have insufficient rights to request this page");
+        throw new NotAuthorizedException("You are not authorized to perform this action");
     }
 }
