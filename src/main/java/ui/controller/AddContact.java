@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class AddContact extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Role[] authRoles = {Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
 
         String destination = "Controller?command=ContactsPage";

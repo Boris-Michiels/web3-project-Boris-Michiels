@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 public class ChangePassword extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Role[] authRoles = {Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
 
         String destination = "Controller?command=ProfilePage";

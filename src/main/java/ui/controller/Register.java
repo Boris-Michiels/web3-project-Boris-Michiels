@@ -3,6 +3,8 @@ package ui.controller;
 import domain.db.DbException;
 import domain.model.DomainException;
 import domain.model.Person;
+import domain.model.Role;
+import domain.model.Utility;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,9 @@ import java.util.ArrayList;
 public class Register extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        Role[] authRoles = {Role.GUEST};
+        Utility.checkRole(request, authRoles);
+
         String destination = "Controller?command=ProfilePage";
         ArrayList<String> errors = new ArrayList<>();
         Person person = new Person();

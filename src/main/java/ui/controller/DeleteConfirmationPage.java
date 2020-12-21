@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteConfirmationPage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Role[] authRoles = {Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
         return "deleteConfirmation.jsp";
     }

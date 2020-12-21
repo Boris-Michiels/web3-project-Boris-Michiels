@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RemoveContactSucces extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        Role[] authRoles = {Role.ADMIN, Role.USER};
+        Role[] authRoles = {Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
 
         request.setAttribute("contactRemovedMessage", "Contact has been removed");

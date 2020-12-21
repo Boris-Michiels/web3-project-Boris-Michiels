@@ -3,6 +3,8 @@ package ui.controller;
 import domain.db.DbException;
 import domain.model.DomainException;
 import domain.model.Person;
+import domain.model.Role;
+import domain.model.Utility;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,9 @@ import javax.servlet.http.HttpSession;
 public class LogIn extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        Role[] authRoles = {Role.GUEST};
+        Utility.checkRole(request, authRoles);
+
         String destination = "Controller?command=ProfilePage";
         String userid = request.getParameter("useridLogIn");
         String password = request.getParameter("passwordLogIn");
