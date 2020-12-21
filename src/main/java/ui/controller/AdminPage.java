@@ -24,6 +24,6 @@ public class AdminPage extends RequestHandler {
         request.setAttribute("contacts", contacts);
         request.setAttribute("testResults", testResults);
         request.setAttribute("personMap", personMap);
-        return "adminPage.jsp";
+        return "admin.jsp";
     }
 }
