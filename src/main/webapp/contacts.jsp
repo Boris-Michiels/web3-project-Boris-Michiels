@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +17,11 @@
     </jsp:include>
 
     <main>
-        <c:if test="${not empty contactRemovedMessage}">
-            <div class="alert-success">
-                <p>${contactRemovedMessage}</p>
+        <c:if test="${not empty statusMessage}">
+            <div class="${messageClass}">
+                <p>${statusMessage}</p>
             </div>
+            <c:remove var="statusMessage" scope="session"/>
         </c:if>
         <h3>Contact overview</h3>
         <c:choose>
@@ -52,6 +53,7 @@
                             <td><c:out value="${contact.phoneNumber}"/></td>
                             <td>
                                 <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
+                                    <input type="hidden" name="origin" id="origin" value="Contacts">
                                     <p>
                                         <input type="submit" name="remove" id="remove" value="Remove">
                                     </p>

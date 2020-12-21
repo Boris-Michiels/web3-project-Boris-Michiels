@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +16,12 @@
     </jsp:include>
 
     <main>
+        <c:if test="${not empty statusMessage}">
+            <div class="${messageClass}">
+                <p>${statusMessage}</p>
+            </div>
+            <c:remove var="statusMessage" scope="session"/>
+        </c:if>
         <h3>User Overview</h3>
         <table>
             <tr>
@@ -66,6 +72,7 @@
                             <td><c:out value="${contact.phoneNumber}"/></td>
                             <td>
                                 <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
+                                    <input type="hidden" name="origin" id="origin" value="Admin Page">
                                     <p>
                                         <input type="submit" name="remove" id="remove" value="Remove">
                                     </p>

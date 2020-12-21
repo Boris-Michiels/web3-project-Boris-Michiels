@@ -19,12 +19,13 @@ public class Delete extends RequestHandler {
         Person person = (Person) session.getAttribute("person");
         String confirmation = request.getParameter("confirmation");
 
-        if (!confirmation.isEmpty() && confirmation.equals("Delete")) {
+        if (confirmation != null && confirmation.equals("Delete")) {
             getService().deletePerson(person);
             getService().removeContacts(person.getUserid());
             getService().removeTestResults(person.getUserid());
-            session.invalidate();
-            destination =  "RedirectController?command=DeleteSucces";
+            session.removeAttribute("person");
+            session.setAttribute("statusMessage", "Your account has been removed");
+            session.setAttribute("messageClass", "alert-success");
         }
         return destination;
     }

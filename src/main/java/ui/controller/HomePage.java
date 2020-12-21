@@ -11,7 +11,6 @@ public class HomePage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.GUEST, Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
-
         return "index.jsp";
     }
 }

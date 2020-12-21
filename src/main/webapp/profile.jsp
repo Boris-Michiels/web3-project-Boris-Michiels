@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +16,14 @@
     </jsp:include>
 
     <main>
+        <c:if test="${not empty statusMessage}">
+            <div class="${messageClass}">
+                <p>${statusMessage}</p>
+            </div>
+            <c:remove var="statusMessage" scope="session"/>
+        </c:if>
         <c:choose>
             <c:when test="${empty person}">
-                <c:if test="${not empty deleteMessage}">
-                    <div class="alert-success">
-                        <p>${deleteMessage}</p>
-                    </div>
-                </c:if>
-
                 <h3>Log in</h3>
                 <c:if test="${not empty logInMessage}">
                     <div class="alert-danger">
@@ -82,11 +82,6 @@
             </c:when>
             <c:otherwise>
                 <h3>Welcome ${person.firstName} ${person.lastName}</h3>
-                <c:if test="${not empty newPwMessage}">
-                    <div class="${fn:contains(newPwMessage, "No") ? "alert-danger" : "alert-success"}">
-                        <p>${newPwMessage}</p>
-                    </div>
-                </c:if>
                 <p>Manage your account</p>
 
                 <form method="post" action="Controller?command=LogOut" novalidate>

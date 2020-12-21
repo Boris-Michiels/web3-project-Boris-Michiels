@@ -33,6 +33,8 @@ public class Register extends RequestHandler {
                 getService().addPerson(person);
                 HttpSession session = request.getSession();
                 session.setAttribute("person", person);
+                session.setAttribute("statusMessage", "Your account has been registered");
+                session.setAttribute("messageClass", "alert-success");
                 destination = "RedirectController?command=ProfilePage";
             } catch (DbException d) {
                 errors.add(d.getMessage());

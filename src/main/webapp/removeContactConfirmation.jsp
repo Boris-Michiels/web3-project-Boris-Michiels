@@ -1,5 +1,5 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <body>
 <div id="container">
     <jsp:include page="header.jsp">
-        <jsp:param name="title" value="Contacts"/>
+        <jsp:param name="title" value="${origin}"/>
     </jsp:include>
 
     <main>
@@ -23,9 +23,8 @@
         <p>Contact time: <c:out value="${contact.timeString}"/></p>
 
         <form method="post" action="Controller?command=RemoveContact" novalidate>
-            <p>
-                <input type="hidden" id="contactid" name="contactid" value="${contact.contactid}">
-            </p>
+            <input type="hidden" name="origin" id="origin" value="${origin}">
+            <input type="hidden" id="contactid" name="contactid" value="${contact.contactid}">
             <p>
                 <input type="submit" name="confirmation" id="noRemove" value="Don't remove">
             </p>

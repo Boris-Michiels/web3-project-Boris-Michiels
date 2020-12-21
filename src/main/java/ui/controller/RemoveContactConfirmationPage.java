@@ -16,6 +16,7 @@ public class RemoveContactConfirmationPage extends RequestHandler {
         String destination = "RedirectController?command=ContactsPage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
+        String origin = request.getParameter("origin");
 
         try {
             int contactid = Integer.parseInt(request.getParameter("contactid"));
@@ -27,6 +28,10 @@ public class RemoveContactConfirmationPage extends RequestHandler {
             request.setAttribute("contact", contact);
             destination = "removeContactConfirmation.jsp";
         } catch (NumberFormatException | DbException ignored) {}
+
+        if (origin != null) {
+            request.setAttribute("origin", origin);
+        }
         return destination;
     }
 }

@@ -30,6 +30,8 @@ public class AddContact extends RequestHandler {
         if (errors.size() == 0) {
             try {
                 getService().addContact(contact);
+                session.setAttribute("statusMessage", "Your contact has been added");
+                session.setAttribute("messageClass", "alert-success");
                 destination = "RedirectController?command=ContactsPage";
             } catch (DbException d) {
                 errors.add(d.getMessage());

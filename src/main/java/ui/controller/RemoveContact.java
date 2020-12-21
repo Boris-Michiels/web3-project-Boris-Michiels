@@ -17,6 +17,7 @@ public class RemoveContact extends RequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         String confirmation = request.getParameter("confirmation");
+        String origin = request.getParameter("origin");
 
         if (confirmation != null && confirmation.equals("Remove")) {
             try {
@@ -27,8 +28,14 @@ public class RemoveContact extends RequestHandler {
                     Utility.checkRole(request, authRoles);
                 }
                 getService().removeOneContact(contactid);
-                destination = "RedirectController?command=RemoveContactSucces";
+                session.setAttribute("statusMessage", "Contact has been removed");
+                session.setAttribute("messageClass", "alert-success");
             } catch (NumberFormatException | DbException ignored) {}
+        }
+
+        if (origin != null) {
+            if (origin.equals("Admin Page")) destination = "RedirectController?command=AdminPage";
+            else if (origin.equals("Contacts")) destination = "RedirectController?command=ContactsPage";
         }
         return destination;
     }

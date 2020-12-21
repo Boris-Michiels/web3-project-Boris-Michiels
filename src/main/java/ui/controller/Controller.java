@@ -24,14 +24,15 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String command = request.getParameter("command"), destination = "Controller?command=HomePage";
+        String command = request.getParameter("command"), destination = "RedirectController?command=HomePage";
 
         if (command != null) {
             try {
                 RequestHandler handler = handlerFactory.getHandler(command, contactTracingService);
                 destination = handler.handleRequest(request, response);
             } catch (NotAuthorizedException a) {
-                request.setAttribute("notAuthorized", a.getMessage());
+                request.getSession().setAttribute("statusMessage", a.getMessage());
+                request.getSession().setAttribute("messageClass", "alert-danger");
             } catch (Exception exc) {
                 System.out.println(exc);
             }

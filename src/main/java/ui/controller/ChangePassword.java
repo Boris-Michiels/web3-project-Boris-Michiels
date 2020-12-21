@@ -12,7 +12,7 @@ public class ChangePassword extends RequestHandler {
         Role[] authRoles = {Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
 
-        String destination = "Controller?command=ProfilePage";
+        String destination = "RedirectController?command=ProfilePage";
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         String newPassword = request.getParameter("newPassword");
@@ -20,10 +20,11 @@ public class ChangePassword extends RequestHandler {
         try {
             person.setPassword(newPassword);
             getService().updatePerson(person);
-            //request.setAttribute("newPwMessage", "Your password has been updated");
-            destination = "RedirectController?command=ChangePasswordSucces";
+            session.setAttribute("statusMessage", "Your password has been updated");
+            session.setAttribute("messageClass", "alert-success");
         } catch (DomainException e) {
-            request.setAttribute("newPwMessage", e.getMessage());
+            session.setAttribute("statusMessage", e.getMessage());
+            session.setAttribute("messageClass", "alert-danger");
         }
         return destination;
     }

@@ -11,7 +11,6 @@ public class ProfilePage extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Role[] authRoles = {Role.GUEST, Role.USER, Role.ADMIN};
         Utility.checkRole(request, authRoles);
-
         return "profile.jsp";
     }
 }
