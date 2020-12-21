@@ -4,10 +4,6 @@
 	padding: 0;
 }
 
-#loggedin {
-	font-size: larger;
-}
-
 body {
 	font-family: arial,sans-serif;
 	font-size: 90%;
@@ -47,10 +43,9 @@ nav ul li a{
 	display: block;
 }
 
-nav ul li#actual {
+nav ul li.active {
 	background-color: #f3dc04;
 }
-
 
 h2, main, footer {
 	padding: 15px 10px;
@@ -101,22 +96,27 @@ td > form, td > form input[type="submit"], button {
     margin-bottom: 1em;
     box-sizing: border-box;
 }
+
 .alert-danger {
 	background-color: #f2dede;
 	border: 1px solid #b94a48;
 	color: #b94a48;
 }
+
 .alert-success {
 	background-color: #e3f2de;
 	border: 1px solid #50b948;
 	color: #50b948;
 }
+
 .alert-danger ul, .alert-success ul {
     list-style-type: none;
 }
+
 label,input,textarea {
     margin-bottom: 16px;
 }
+
 input,textarea, button {
     border: 1px solid #888;
     margin: 2px 0 16px 0;
@@ -127,12 +127,12 @@ input,textarea, button {
     box-shadow: inset 0px 1px 4px #ECECEC;
     box-sizing: border-box;
 }
+
 .has-error {
     color: #b94a48;
     border-color: #b94a48;
     box-shadow: inset 0px 1px 4px #d59392;
 }
-
 
 /* mobile first */
 div#container {
@@ -151,19 +151,21 @@ nav ul li:first-child {
 label,input,textarea {
     display: block;
 }
+
 input[type="text"], input[type="email"], textarea {
     width: 100%;
 }
+
 input {
     height: 25px;
 }
-
 
 /* desktop */
 @media screen and (min-width: 650px) {
 	div#container {
 	max-width: 1000px;
 	}
+
 	h1 {
 	background-image: url("../images/banner.png");
 	}
@@ -184,42 +186,42 @@ input {
 	margin: auto;
 	border: none;
 	}
+
 	nav ul li:first-child {
 	border: none;
 	}
+
 	nav ul li a {
 	text-align: center;
 	}
+
 	footer {
 	text-align: right;
 	}
+
 	    .alert-danger, .alert-success {
         width: 614px;
     }
+
     label,input,textarea, button {
         display: inline-block; 
     }
+
     label {
         width: 100px;
         text-align: right;
         margin-right: 10px;
     }
+
     input[type="text"], input[type="email"], input[type="password"], textarea{
         width: 400px;
     }
+
     input[type="submit"], button {
         margin-left: 112px;
     }
+
     textarea {
         vertical-align: middle;    
     }
-	
-	
 }
-
-/*
-d3bb03 green
-977007 brown
-303d11 black
-f3dc04 yellow
-*/
