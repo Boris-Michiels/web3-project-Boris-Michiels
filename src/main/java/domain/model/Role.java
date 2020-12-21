@@ -1,6 +1,7 @@
 package domain.model;
 
 public enum Role {
+    GUEST("guest"),
     USER("user"),
     ADMIN("admin");
 
