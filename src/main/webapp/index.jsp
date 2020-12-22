@@ -15,7 +15,7 @@
 
     <main>
         <c:if test="${not empty statusMessage}">
-            <div class="${messageClass}">
+            <div id="statusMessage" class="${messageClass}">
                 <p>${statusMessage}</p>
             </div>
             <c:remove var="statusMessage" scope="session"/>

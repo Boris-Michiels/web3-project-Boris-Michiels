@@ -49,7 +49,7 @@ public class Contact {
     }
 
     public void setFirstName(String firstName) {
-        if (firstName == null || firstName.trim().isEmpty()) throw new DomainException("No firstname given");
+        if (firstName == null || firstName.trim().isEmpty()) throw new DomainException("No first name given");
         this.firstName = firstName;
     }
 
