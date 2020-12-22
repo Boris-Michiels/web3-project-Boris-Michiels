@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="scripts/Script.js" defer></script>
+    <script src="scripts/ContactsTableScript.js" defer></script>
 </head>
 <body>
 <div id="container">

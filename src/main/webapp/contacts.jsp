@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Contacts</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="scripts/Script.js" defer></script>
+    <script src="scripts/ContactsTableScript.js" defer></script>
+    <script src="scripts/FormValidationScript.js" defer></script>
 </head>
 <body>
 <div id="container">
@@ -78,7 +79,7 @@
             </div>
         </c:if>
 
-        <form method="post" action="Controller?command=AddContact" novalidate>
+        <form name="contactForm" method="post" onsubmit="return validateContactForm()" action="Controller?command=AddContact" novalidate>
             <p>
                 <label for="firstName">First Name</label>
                 <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${fn:escapeXml(firstNamePreviousValue)}" required>

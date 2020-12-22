@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Test Result</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="scripts/FormValidationScript.js" defer></script>
 </head>
 <body>
 <div id="container">
@@ -27,7 +28,7 @@
             </div>
         </c:if>
 
-        <form method="post" action="Controller?command=RegisterTestResult" novalidate>
+        <form name="testResultForm" method="post" onsubmit="return validateTestResultForm()" action="Controller?command=RegisterTestResult" novalidate>
             <p>
                 <label for="date">Date</label>
                 <input class="form-group ${dateClass}" type="date" id="date" name="date" required>
