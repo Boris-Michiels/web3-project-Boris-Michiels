@@ -5,14 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Profile</title>
+    <c:set var="title" value="Profile" scope="request"/>
+    <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div id="container">
-    <jsp:include page="header.jsp">
-        <jsp:param name="title" value="Profile"/>
-    </jsp:include>
+    <jsp:include page="header.jsp"/>
 
     <main>
         <h3>Delete Account?</h3>

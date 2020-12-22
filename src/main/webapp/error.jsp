@@ -5,14 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Something wrong</title>
+    <c:set var="title" value="Something is wrong" scope="request"/>
+    <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div id="container">
-    <jsp:include page="header.jsp">
-        <jsp:param name="title" value="Something is Wrong"/>
-    </jsp:include>
+    <jsp:include page="header.jsp"/>
 
     <main>
         <p>You caused a ${pageContext.exception} on the server.</p>

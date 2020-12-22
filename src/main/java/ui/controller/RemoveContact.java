@@ -17,7 +17,7 @@ public class RemoveContact extends RequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("person");
         String confirmation = request.getParameter("confirmation");
-        String origin = request.getParameter("origin");
+        String origin = request.getParameter("title");
 
         if (confirmation != null && confirmation.equals("Remove")) {
             try {

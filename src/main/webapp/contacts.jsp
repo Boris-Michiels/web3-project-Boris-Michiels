@@ -6,16 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Contacts</title>
+    <c:set var="title" value="Contacts" scope="request"/>
+    <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="scripts/ContactsTableScript.js" defer></script>
     <script src="scripts/FormValidationScript.js" defer></script>
 </head>
 <body>
 <div id="container">
-    <jsp:include page="header.jsp">
-        <jsp:param name="title" value="Contacts"/>
-    </jsp:include>
+    <jsp:include page="header.jsp"/>
 
     <main>
         <c:if test="${not empty statusMessage}">
@@ -54,7 +53,7 @@
                             <td><c:out value="${contact.phoneNumber}"/></td>
                             <td>
                                 <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
-                                    <input type="hidden" name="origin" id="origin" value="Contacts">
+                                    <input type="hidden" name="title" id="title" value="${title}">
                                     <p>
                                         <input type="submit" name="remove" id="remove" value="Remove">
                                     </p>
