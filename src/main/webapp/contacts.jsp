@@ -23,7 +23,7 @@
             </div>
             <c:remove var="statusMessage" scope="session"/>
         </c:if>
-        <h3>Contact overview</h3>
+        <h3>Contacts overview</h3>
         <c:choose>
             <c:when test="${empty contacts}">
                 <p>You haven't added any contacts yet.</p>

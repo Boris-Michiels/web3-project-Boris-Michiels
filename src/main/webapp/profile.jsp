@@ -93,7 +93,7 @@
                 <form name="changePasswordForm" method="post" onsubmit="return validateChangePasswordForm()" action="Controller?command=ChangePassword" novalidate>
                     <p>
                         <label for="newPassword">New Password</label>
-                        <input type="text" id="newPassword" name="newPassword" required>
+                        <input type="password" id="newPassword" name="newPassword" required>
                     </p>
                     <p>
                         <input type="submit" id="changePassword" value="Change Password">
