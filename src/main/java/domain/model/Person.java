@@ -37,7 +37,7 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
-        if (firstName == null || firstName.trim().isEmpty()) throw new DomainException("No firstname given");
+        if (firstName == null || firstName.trim().isEmpty()) throw new DomainException("No first name given");
         this.firstName = firstName;
     }
 
@@ -60,10 +60,10 @@ public class Person {
 
     public void setEmail(String email) {
         if (email == null || email.trim().isEmpty()) throw new DomainException("No email given");
-        String USERID_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern p = Pattern.compile(USERID_PATTERN);
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern p = Pattern.compile(EMAIL_PATTERN);
         Matcher m = p.matcher(email);
-        if (!m.matches()) throw new DomainException("Email not valid");
+        if (!m.matches()) throw new DomainException("Email is not valid");
         this.email = email;
     }
 
