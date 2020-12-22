@@ -143,7 +143,7 @@ function validateTestResultForm() {
     date = form["date"].value;
 
     if (date.trim() === "") {
-        error = "No password given";
+        error = "No date given";
         form["date"].value = "";
         form["date"].className = "has-error";
         createErrorDivP(document.getElementsByTagName("h3")[0], "afterend", error);
