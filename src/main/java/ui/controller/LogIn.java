@@ -21,6 +21,7 @@ public class LogIn extends RequestHandler {
         String password = request.getParameter("passwordLogIn");
 
         try {
+            userid = userid.toLowerCase();
             Person person = getService().getPerson(userid);
             boolean correct = person.isCorrectPassword(password);
             if (correct) {
