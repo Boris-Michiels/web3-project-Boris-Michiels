@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 /**
  * @author Filip Saint, Boris Michiels
  **/
@@ -91,5 +93,19 @@ public class ProfilePageGuest extends Page {
 
     public boolean hasLogOutButton() {
         return driver.findElement(By.id("logOut")) != null;
+    }
+
+    public boolean containsErrorMessageWithText(String text) {
+        List<WebElement> errorList = this.driver.findElement(By.className("alert-danger")).findElements(By.tagName("li"));
+        for (WebElement li : errorList) {
+            if (li.getText().equals(text)) return true;
+        }
+        return false;
+    }
+
+    public boolean containsLogInMessageWithText(String text) {
+        WebElement logInP = this.driver.findElement(By.cssSelector("div.alert-danger p"));
+        if (logInP.getText().equals(text)) return true;
+        return false;
     }
 }

@@ -1,6 +1,9 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 /**
  * @author Filip Saint, Boris Michiels
@@ -47,5 +50,13 @@ public class ProfilePageUser extends Page {
 
     public void submitDelete() {
         deleteButton.click();
+    }
+
+    public boolean hasH3WithUserName(String name) {
+        List<WebElement> h3List = driver.findElements(By.tagName("h3"));
+        for (WebElement h3 : h3List) {
+            if (h3.getText().contains(name)) return true;
+        }
+        return false;
     }
 }
