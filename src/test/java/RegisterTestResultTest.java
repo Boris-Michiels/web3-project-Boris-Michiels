@@ -1,37 +1,24 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.*;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author Lennert Van Oosterwyck r0782485 & Jens Gervais r0782113;
+ * @author Nicolas Vanden Bosch r0798086
  **/
 
-public class LogOutTest {
-    private WebDriver driver;
-    private String path = "http://localhost:8080/";
+public class RegisterTestResultTest {
+    public WebDriver driver;
 
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\boris\\Documents\\Programs\\Selenium\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
-    }
-
-    @After
-    public void clean() {
-        driver.quit();
-    }
-
-    @Test
-    public void test_LoggedInUserLogsOut_ProfilePageShownWithLogInForm() {
-        //Register and log in
         ProfilePageGuest profilePageGuest = PageFactory.initElements(driver, ProfilePageGuest.class);
         profilePageGuest.setUseridRegisterField("testUser");
         profilePageGuest.setFirstNameRegisterField("Test");
@@ -40,27 +27,34 @@ public class LogOutTest {
         profilePageGuest.setPasswordRegisterField("t");
         profilePageGuest.submitRegister();
         assertTrue(profilePageGuest.containsStatusMessageWithText("Your account has been registered"));
+    }
 
-        //Uitloggen
+    @After
+    public void clean() {
         ProfilePageUser profilePageUser = PageFactory.initElements(driver, ProfilePageUser.class);
-        profilePageUser.submitLogout();
-
-        assertTrue(profilePageGuest.hasLogInForm());
-
-        profilePageGuest.setUseridLogInField("testUser");
-        profilePageGuest.setPasswordLogInField("t");
-        profilePageGuest.submitLogIn();
-
         profilePageUser.submitDelete();
         DeleteConfirmationPage deleteConfirmationPage = PageFactory.initElements(driver, DeleteConfirmationPage.class);
         deleteConfirmationPage.submitDelete();
         assertTrue(deleteConfirmationPage.containsStatusMessageWithText("Your account has been removed"));
+        driver.quit();
     }
 
-    @Test(expected = NoSuchElementException.class)
-    public void test_GuestVisitsSite_CannotSeeLogOutButton() {
-        ProfilePageGuest profilePageGuest = PageFactory.initElements(driver, ProfilePageGuest.class);
-        assertTrue(profilePageGuest.hasLogInForm());
-        assertFalse(profilePageGuest.hasLogOutButton());
+    @Test
+    public void test_registerTestResult_showsTestResultInContactOverview(){
+        TestResultPage testResultPage = PageFactory.initElements(driver, TestResultPage.class);
+        testResultPage.setDateTestResultField("02-03-002020");
+        testResultPage.submitAddTestResult();
+
+        testResultPage = PageFactory.initElements(driver, TestResultPage.class);
+        assertTrue(testResultPage.containsTestResultWithDate("02/03/2020"));
+    }
+
+    @Test
+    public void test_registerTestResult_noDateGiven_givesError(){
+        TestResultPage testResultPage = PageFactory.initElements(driver, TestResultPage.class);
+        testResultPage.setDateTestResultField("");
+        testResultPage.submitAddTestResult();
+
+        assertTrue(testResultPage.containsErrorMessageWithText("No date given"));
     }
 }

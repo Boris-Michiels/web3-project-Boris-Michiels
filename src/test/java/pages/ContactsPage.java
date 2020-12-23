@@ -1,3 +1,5 @@
+package pages;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,7 +31,7 @@ public class ContactsPage extends Page {
 
     public ContactsPage (WebDriver driver) {
         super(driver);
-        this.driver.get(path+"?command=ContactsPage");
+        this.driver.get(path + "?command=ContactsPage");
     }
 
     public void setFirstNameContactField(String firstNameContact) {
