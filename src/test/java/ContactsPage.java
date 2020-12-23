@@ -4,6 +4,10 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Filip Saint, Boris Michiels
+ **/
+
 public class ContactsPage extends Page {
     @FindBy(id = "firstName")
     private WebElement firstNameContactField;

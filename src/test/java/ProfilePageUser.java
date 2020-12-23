@@ -2,6 +2,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * @author Filip Saint, Boris Michiels
+ **/
+
 public class ProfilePageUser extends Page {
     @FindBy(id = "logOut")
     private WebElement logOutButton;

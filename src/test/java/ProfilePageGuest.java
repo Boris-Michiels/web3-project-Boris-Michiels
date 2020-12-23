@@ -1,6 +1,11 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+/**
+ * @author Filip Saint, Boris Michiels
+ **/
 
 public class ProfilePageGuest extends Page {
     @FindBy(id = "useridLogIn")
@@ -78,5 +83,13 @@ public class ProfilePageGuest extends Page {
 
     public void submitRegister() {
         registerButton.click();
+    }
+
+    public boolean hasLogInForm() {
+        return driver.findElement(By.name("logInForm")) != null;
+    }
+
+    public boolean hasLogOutButton() {
+        return driver.findElement(By.id("logOut")) != null;
     }
 }
