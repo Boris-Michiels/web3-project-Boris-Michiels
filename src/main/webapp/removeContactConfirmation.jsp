@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <c:set var="title" value="${title}" scope="request"/>
+    <c:set var="title" value="${origin}" scope="request"/>
     <title>${title}</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -22,7 +22,7 @@
         <p>Contact time: <c:out value="${contact.timeString}"/></p>
 
         <form method="post" action="Controller?command=RemoveContact" novalidate>
-            <input type="hidden" name="title" id="title" value="${title}">
+            <input type="hidden" name="origin" id="origin" value="${title}">
             <input type="hidden" id="contactid" name="contactid" value="${contact.contactid}">
             <p>
                 <input type="submit" name="confirmation" id="noRemove" value="Don't remove">

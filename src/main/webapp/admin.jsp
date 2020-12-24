@@ -71,7 +71,7 @@
                             <td><c:out value="${contact.phoneNumber}"/></td>
                             <td>
                                 <form method="post" action="Controller?command=RemoveContactConfirmationPage&contactid=${contact.contactid}">
-                                    <input type="hidden" name="title" id="title" value="${title}">
+                                    <input type="hidden" name="origin" id="origin" value="${title}">
                                     <p>
                                         <input type="submit" name="remove" id="remove" value="Remove">
                                     </p>
