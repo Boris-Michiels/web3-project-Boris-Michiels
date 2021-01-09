@@ -76,7 +76,7 @@ public class PersonDBSQL implements PersonDB {
         String sql = String.format("SELECT * FROM %s.person WHERE userid = ?", this.schema);
         try {
             PreparedStatement statementSQL = connection.prepareStatement(sql);
-            statementSQL.setString(1, userid);
+            statementSQL.setString(1, userid.toLowerCase());
             ResultSet result = statementSQL.executeQuery();
             if (result.next()) return createPerson(result);
             else throw new DbException("No valid userid/password");
