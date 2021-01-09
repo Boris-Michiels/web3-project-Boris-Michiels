@@ -38,6 +38,10 @@ public class Register extends RequestHandler {
                 destination = "RedirectController?command=ProfilePage";
             } catch (DbException d) {
                 errors.add(d.getMessage());
+                if (d.getMessage().equals("User already exists")) {
+                    request.removeAttribute("useridPreviousValue");
+                    request.setAttribute("useridClass", "has-error");
+                }
             }
         }
         request.setAttribute("errors", errors);
