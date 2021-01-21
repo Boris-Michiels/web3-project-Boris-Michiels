@@ -18,6 +18,7 @@ public class ContactTracingService {
     public ContactTracingService() {
     }
 
+
     public Person getPerson(String userid) {
         return getPersonDBSQL().get(userid);
     }
@@ -41,7 +42,6 @@ public class ContactTracingService {
     private PersonDBSQL getPersonDBSQL() {
         return personDBSQL;
     }
-
 
 
     public List<Contact> getContacts(String userid) {
