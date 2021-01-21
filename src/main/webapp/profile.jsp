@@ -81,7 +81,7 @@
                 </form>
             </c:when>
             <c:otherwise>
-                <h3>Welcome ${person.firstName} ${person.lastName}</h3>
+                <h3>Welcome <c:out value="${person.fullName}"/></h3>
                 <p>Manage your account</p>
 
                 <form method="post" action="Controller?command=LogOut" novalidate>
