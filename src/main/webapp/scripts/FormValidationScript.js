@@ -1,156 +1,146 @@
-function validateLogInForm() {
-    let form, userid, password, errors;
-    errors = [];
-    form = document.forms["logInForm"];
-    userid = form["useridLogIn"].value;
-    password = form["passwordLogIn"].value;
+if (document.forms["logInForm"]) document.forms["logInForm"].onsubmit = function(event) {validateLogInForm(event)};
+if (document.forms["registerForm"]) document.forms["registerForm"].onsubmit = function(event) {validateRegisterForm(event)};
+if (document.forms["changePasswordForm"]) document.forms["changePasswordForm"].onsubmit = function(event) {validateChangePasswordForm(event)};
+if (document.forms["contactForm"]) document.forms["contactForm"].onsubmit = function(event) {validateContactForm(event)};
+if (document.forms["testResultForm"]) document.forms["testResultForm"].onsubmit = function(event) {validateTestResultForm(event)};
 
-    if (userid.trim() === "") {
+function validateLogInForm(event) {
+    let form, errors;
+    errors = [];
+    form = event.target;
+
+    if (form["useridLogIn"].value.trim() === "") {
         errors.push("No userid given");
         form["useridLogIn"].value = "";
         form["useridLogIn"].className = "has-error";
     } else form["useridLogIn"].className = "has-success";
-    if (password.trim() === "") {
+    if (form["passwordLogIn"].value.trim() === "") {
         errors.push("No password given");
         form["passwordLogIn"].value = "";
         form["passwordLogIn"].className = "has-error";
     } else form["passwordLogIn"].className = "has-success";
 
     if (errors.length > 0) {
+        event.preventDefault();
         createErrorDivList(document.getElementsByTagName("h3")[0], "afterend", errors);
-        return false;
-    } else return true;
+    }
 }
 
-function validateRegisterForm() {
-    let form, userid, firstName, lastName, email, password, errors;
+function validateRegisterForm(event) {
+    let form, errors;
     errors = [];
-    form = document.forms["registerForm"];
-    userid = form["userid"].value;
-    firstName = form["firstName"].value;
-    lastName = form["lastName"].value;
-    email = form["email"].value;
-    password = form["password"].value;
+    form = event.target;
 
-    if (userid.trim() === "") {
+    if (form["userid"].value.trim() === "") {
         errors.push("No userid given");
         form["userid"].value = "";
         form["userid"].className = "form-group has-error";
     } else form["userid"].className = "form-group has-success";
-    if (firstName.trim() === "") {
+    if (form["firstName"].value.trim() === "") {
         errors.push("No first name given");
         form["firstName"].value = "";
         form["firstName"].className = "form-group has-error";
     } else form["firstName"].className = "form-group has-success";
-    if (lastName.trim() === "") {
+    if (form["lastName"].value.trim() === "") {
         errors.push("No last name given");
         form["lastName"].value = "";
         form["lastName"].className = "form-group has-error";
     } else form["lastName"].className = "form-group has-success";
-    if (email.trim() === "") {
+    if (form["email"].value.trim() === "") {
         errors.push("No email given");
         form["email"].value = "";
         form["email"].className = "form-group has-error";
     } else {
         let EMAIL_PATTERN = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        if (!email.match(EMAIL_PATTERN)) {
+        if (!form["email"].value.match(EMAIL_PATTERN)) {
             errors.push("Email is not valid");
             form["email"].value = "";
             form["email"].className = "form-group has-error";
         } else form["email"].className = "form-group has-success";
     }
-    if (password.trim() === "") {
+    if (form["password"].value.trim() === "") {
         errors.push("No password given");
         form["password"].value = "";
         form["password"].className = "has-error";
     } else form["password"].className = "form-group has-success";
 
     if (errors.length > 0) {
+        event.preventDefault();
         createErrorDivList(document.getElementsByTagName("h3")[1], "afterend", errors);
-        return false;
-    } else return true;
-}
-
-function validateChangePasswordForm() {
-    let form, password, error;
-    form = document.forms["changePasswordForm"];
-    password = form["newPassword"].value;
-
-    if (password.trim() === "") {
-        error = "No password given";
-        form["newPassword"].value = "";
-        form["newPassword"].className = "has-error";
-        createErrorDivP(document.getElementsByTagName("main")[0], "afterbegin", error);
-        return false;
-    } else {
-        form["newPassword"].className = "has-success";
-        return true;
     }
 }
 
-function validateContactForm() {
-    let form, firstName, lastName, email, phone, dateTime, errors;
-    errors = [];
-    form = document.forms["contactForm"];
-    firstName = form["firstName"].value;
-    lastName = form["lastName"].value;
-    email = form["email"].value;
-    phone = form["phoneNumber"].value;
-    dateTime = form["dateTime"].value;
+function validateChangePasswordForm(event) {
+    let form, error;
+    form = event.target;
 
-    if (firstName.trim() === "") {
+    if (form["newPassword"].value.trim() === "") {
+        error = "No password given";
+        form["newPassword"].value = "";
+        form["newPassword"].className = "has-error";
+        event.preventDefault();
+        createErrorDivP(document.getElementsByTagName("main")[0], "afterbegin", error);
+    } else {
+        form["newPassword"].className = "has-success";
+    }
+}
+
+function validateContactForm(event) {
+    let form, errors;
+    errors = [];
+    form = event.target;
+
+    if (form["firstName"].value.trim() === "") {
         errors.push("No first name given");
         form["firstName"].value = "";
         form["firstName"].className = "form-group has-error";
     } else form["firstName"].className = "form-group has-success";
-    if (lastName.trim() === "") {
+    if (form["lastName"].value.trim() === "") {
         errors.push("No last name given");
         form["lastName"].value = "";
         form["lastName"].className = "form-group has-error";
     } else form["lastName"].className = "form-group has-success";
-    if (email.trim() === "") {
+    if (form["email"].value.trim() === "") {
         errors.push("No email given");
         form["email"].value = "";
         form["email"].className = "form-group has-error";
     } else {
         let EMAIL_PATTERN = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        if (!email.match(EMAIL_PATTERN)) {
+        if (!form["email"].value.match(EMAIL_PATTERN)) {
             errors.push("Email is not valid");
             form["email"].value = "";
             form["email"].className = "form-group has-error";
         } else form["email"].className = "form-group has-success";
     }
-    if (phone.trim() === "") {
+    if (form["phoneNumber"].value.trim() === "") {
         errors.push("No phone number given");
         form["phoneNumber"].value = "";
         form["phoneNumber"].className = "has-error";
     } else form["phoneNumber"].className = "form-group has-success";
-    if (dateTime.trim() === "") {
+    if (form["dateTime"].value.trim() === "") {
         errors.push("No date and/or time given");
         form["dateTime"].value = "";
         form["dateTime"].className = "has-error";
     } else form["dateTime"].className = "form-group has-success";
 
     if (errors.length > 0) {
+        event.preventDefault();
         createErrorDivList(document.getElementsByTagName("h3")[1], "afterend", errors);
-        return false;
-    } else return true;
+    }
 }
 
-function validateTestResultForm() {
-    let form, date, error;
-    form = document.forms["testResultForm"];
-    date = form["date"].value;
+function validateTestResultForm(event) {
+    let form, error;
+    form = event.target;
 
-    if (date.trim() === "") {
+    if (form["date"].value.trim() === "") {
         error = "No date given";
         form["date"].value = "";
         form["date"].className = "has-error";
+        event.preventDefault();
         createErrorDivP(document.getElementsByTagName("h3")[0], "afterend", error);
-        return false;
     } else {
         form["date"].className = "has-success";
-        return true;
     }
 }
 

@@ -30,7 +30,7 @@
                         <p>${logInMessage}</p>
                     </div>
                 </c:if>
-                <form name="logInForm" method="post" onsubmit="return validateLogInForm()" action="Controller?command=LogIn" novalidate>
+                <form name="logInForm" method="post" action="Controller?command=LogIn" novalidate>
                     <p>
                         <label for="useridLogIn">User id</label>
                         <input type="text" id="useridLogIn" name="useridLogIn" value="${fn:escapeXml(useridLogInPreviousValue)}" required>
@@ -54,7 +54,7 @@
                         </ul>
                     </div>
                 </c:if>
-                <form name="registerForm" method="post" onsubmit="return validateRegisterForm()" action="Controller?command=Register" novalidate>
+                <form name="registerForm" method="post" action="Controller?command=Register" novalidate>
                     <p>
                         <label for="userid">User id</label>
                         <input class="form-group ${useridClass}" type="text" id="userid" name="userid" value="${fn:escapeXml(useridPreviousValue)}" required>
@@ -90,7 +90,7 @@
                     </p>
                 </form>
 
-                <form name="changePasswordForm" method="post" onsubmit="return validateChangePasswordForm()" action="Controller?command=ChangePassword" novalidate>
+                <form name="changePasswordForm" method="post" action="Controller?command=ChangePassword" novalidate>
                     <p>
                         <label for="newPassword">New Password</label>
                         <input type="password" id="newPassword" name="newPassword" required>

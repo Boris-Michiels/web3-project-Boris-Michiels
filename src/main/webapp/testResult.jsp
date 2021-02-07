@@ -27,7 +27,7 @@
             </div>
         </c:if>
 
-        <form name="testResultForm" method="post" onsubmit="return validateTestResultForm()" action="Controller?command=RegisterTestResult" novalidate>
+        <form name="testResultForm" method="post" action="Controller?command=RegisterTestResult" novalidate>
             <p>
                 <label for="date">Date</label>
                 <input class="form-group ${dateClass}" type="date" id="date" name="date" required>

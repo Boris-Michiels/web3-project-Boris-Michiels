@@ -78,7 +78,7 @@
             </div>
         </c:if>
 
-        <form name="contactForm" method="post" onsubmit="return validateContactForm()" action="Controller?command=AddContact" novalidate>
+        <form name="contactForm" method="post" action="Controller?command=AddContact" novalidate>
             <p>
                 <label for="firstName">First Name</label>
                 <input class="form-group ${firstNameClass}" type="text" id="firstName" name="firstName" value="${fn:escapeXml(firstNamePreviousValue)}" required>
