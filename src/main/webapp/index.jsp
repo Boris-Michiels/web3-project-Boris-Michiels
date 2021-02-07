@@ -14,12 +14,7 @@
     <jsp:include page="header.jsp"/>
 
     <main>
-        <c:if test="${not empty statusMessage}">
-            <div id="statusMessage" class="${messageClass}">
-                <p>${statusMessage}</p>
-            </div>
-            <c:remove var="statusMessage" scope="session"/>
-        </c:if>
+        <jsp:include page="statusMessage.jsp"/>
         <p>
             Sed ut perspiciatis unde omnis iste natus error sit
             voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque

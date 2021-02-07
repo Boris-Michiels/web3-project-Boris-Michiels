@@ -16,12 +16,7 @@
     <jsp:include page="header.jsp"/>
 
     <main>
-        <c:if test="${not empty statusMessage}">
-            <div id="statusMessage" class="${messageClass}">
-                <p>${statusMessage}</p>
-            </div>
-            <c:remove var="statusMessage" scope="session"/>
-        </c:if>
+        <jsp:include page="statusMessage.jsp"/>
         <c:choose>
             <c:when test="${empty person}">
                 <h3>Log in</h3>
