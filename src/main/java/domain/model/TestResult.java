@@ -2,6 +2,7 @@ package domain.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class TestResult {
     private int testResultid;
@@ -45,7 +46,11 @@ public class TestResult {
 
     public void setDateString(String dateString) {
         if (dateString == null || dateString.trim().isEmpty()) throw new DomainException("No date given");
-        setDate(LocalDate.parse(dateString, dateFormatter));
+        try {
+            setDate(LocalDate.parse(dateString, dateFormatter));
+        } catch (DateTimeParseException d) {
+            throw new DomainException("Date is not valid");
+        }
     }
 
     public LocalDate getDate() {

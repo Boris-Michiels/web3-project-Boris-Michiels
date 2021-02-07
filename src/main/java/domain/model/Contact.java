@@ -2,6 +2,7 @@ package domain.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,7 +101,11 @@ public class Contact {
 
     public void setTimeStampString(String timeStampString) {
         if (timeStampString == null || timeStampString.trim().isEmpty()) throw new DomainException("No date and/or time given");
-        setTimeStamp(LocalDateTime.parse(timeStampString, dateTimeFormatter));
+        try{
+            setTimeStamp(LocalDateTime.parse(timeStampString, dateTimeFormatter));
+        } catch (DateTimeParseException d) {
+            throw new DomainException("Date and/or time is/are not valid");
+        }
     }
 
     public LocalDateTime getTimeStamp() {
