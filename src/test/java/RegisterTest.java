@@ -175,7 +175,7 @@ public class RegisterTest {
         assertEquals("User already exists", errorMsg.getText());
 
         WebElement fieldUserid = driver.findElement(By.id("userid"));
-        assertEquals(useridRandom, fieldUserid.getAttribute("value"));
+        assertEquals("", fieldUserid.getAttribute("value"));
 
         WebElement fieldFirstName = driver.findElement(By.id("firstName"));
         assertEquals("Pieter", fieldFirstName.getAttribute("value"));
